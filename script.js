@@ -1,439 +1,1543 @@
+/* =====================================================
+   RAÍZES DO FUTURO – AGRINHO 2026
+   script.js – Funcionalidades JavaScript
+   ===================================================== */
+
+/* ─────────────────────────────────────────
+   1. DADOS DO QUIZ – 10 perguntas
+   ───────────────────────────────────────── */
+const quizData = [
+  {
+    question: "O que é agricultura de precisão?",
+    options: [
+      "Cultivar apenas produtos orgânicos sem uso de máquinas",
+      "Usar tecnologias como GPS e sensores para otimizar o manejo de cada área da lavoura",
+      "Plantar em linhas muito retas usando régua e compasso",
+      "Tipo de agricultura praticada somente em pequenas propriedades"
+    ],
+    correct: 1,
+    explanation: "A agricultura de precisão usa GPS, drones, sensores e dados para aplicar insumos somente onde e quando necessário, reduzindo desperdícios e aumentando a produtividade."
+  },
+  {
+    question: "Qual é a principal vantagem do uso de drones na lavoura?",
+    options: [
+      "Substituir totalmente o trabalho dos agricultores",
+      "Monitorar grandes áreas rapidamente e detectar pragas e doenças precocemente",
+      "Transportar grãos colhidos até os silos",
+      "Fazer a irrigação das plantações por aspersão"
+    ],
+    correct: 1,
+    explanation: "Drones equipados com câmeras multiespectrais identificam doenças, pragas e deficiências nutricionais muito antes que o olho humano perceba, permitindo ação rápida e precisa."
+  },
+  {
+    question: "Quanto pode reduzir o consumo de água a irrigação por gotejamento inteligente em comparação ao método tradicional?",
+    options: [
+      "Cerca de 5%",
+      "Cerca de 20%",
+      "Até 60%",
+      "Apenas 10%"
+    ],
+    correct: 2,
+    explanation: "O gotejamento inteligente, combinado com sensores de umidade no solo, pode reduzir o consumo de água em até 60%, pois a água vai diretamente às raízes, sem evaporação nem escoamento."
+  },
+  {
+    question: "O que é energia bioelétrica (biogás) no contexto rural?",
+    options: [
+      "Energia gerada pela fermentação de resíduos orgânicos como dejetos animais e palha",
+      "Energia captada pelo vento nas torres eólicas do campo",
+      "Eletricidade gerada pela combustão de gasolina em geradores rurais",
+      "Energia solar armazenada em baterias de lítio"
+    ],
+    correct: 0,
+    explanation: "O biogás é produzido pela digestão anaeróbica de resíduos orgânicos (esterco, bagaço, palha). O gás gerado alimenta motores ou gera eletricidade, aproveitando o que seria descartado."
+  },
+  {
+    question: "O que é o Código Florestal Brasileiro?",
+    options: [
+      "Lei que proíbe completamente qualquer desmatamento no Brasil",
+      "Lei que regula o uso da terra, exigindo Áreas de Preservação Permanente e Reservas Legais nas propriedades rurais",
+      "Regras sobre como plantar árvores frutíferas em quintais urbanos",
+      "Decreto que libera a exportação de madeira nativa para outros países"
+    ],
+    correct: 1,
+    explanation: "O Código Florestal (Lei 12.651/2012) estabelece APPs (Áreas de Preservação Permanente) e Reservas Legais nas propriedades rurais, equilibrando produção agrícola com proteção ambiental."
+  },
+  {
+    question: "Qual é a relação entre campo e cidade no abastecimento alimentar?",
+    options: [
+      "A cidade produz alimentos em fazendas verticais e não depende do campo",
+      "Cerca de 70% dos alimentos que chegam à mesa urbana vêm de pequenos e médios produtores rurais",
+      "O campo só produz commodities para exportação, sem impacto no consumo interno",
+      "O campo e a cidade não têm relação direta na questão alimentar"
+    ],
+    correct: 1,
+    explanation: "Pequenos e médios produtores rurais respondem por grande parte dos alimentos consumidos nas cidades brasileiras, especialmente hortifrúti, leite, ovos e carnes."
+  },
+  {
+    question: "O que significa o conceito de 'segurança alimentar'?",
+    options: [
+      "Utilizar agrotóxicos para garantir que a comida não tenha pragas",
+      "Garantia de acesso de todas as pessoas a alimentos suficientes, saudáveis e de qualidade",
+      "Código de segurança nas embalagens dos alimentos industrializados",
+      "Sistema de câmeras de vigilância nos supermercados"
+    ],
+    correct: 1,
+    explanation: "Segundo a FAO, segurança alimentar existe quando todas as pessoas têm acesso físico, social e econômico a alimentos suficientes, seguros e nutritivos, em quantidade e qualidade."
+  },
+  {
+    question: "Como a Inteligência Artificial (IA) pode ajudar na agricultura?",
+    options: [
+      "Substituir completamente o produtor rural em todas as decisões",
+      "Prever doenças, calcular o melhor momento de plantio e identificar deficiências nutricionais por imagens de satélite",
+      "Criar novos organismos geneticamente modificados sem supervisão humana",
+      "Automatizar apenas o processo de embalagem dos produtos no galpão"
+    ],
+    correct: 1,
+    explanation: "A IA analisa dados climáticos, históricos e imagens de satélite para recomendar quando plantar, irrigar e colher, além de identificar pragas e calcular doses precisas de fertilizantes."
+  },
+  {
+    question: "O que é agrofloresta (sistemas agroflorestais)?",
+    options: [
+      "Técnica de plantar somente florestas de eucalipto para celulose",
+      "Sistema que integra árvores, culturas agrícolas e/ou animais na mesma área, beneficiando todos os componentes",
+      "Método de desmatar e plantar soja em seguida para máxima produção",
+      "Tipo de estufa para cultivar plantas em ambiente controlado"
+    ],
+    correct: 1,
+    explanation: "A agrofloresta combina árvores com culturas e/ou animais, imitando a natureza. Ela melhora o solo, conserva a água, aumenta a biodiversidade e produz alimentos — tudo ao mesmo tempo."
+  },
+  {
+    question: "Qual é um dos maiores desafios para alimentar 10 bilhões de pessoas em 2050?",
+    options: [
+      "Reduzir a produção agrícola para poupar o meio ambiente",
+      "Produzir 70% mais alimentos sem expandir significativamente as áreas cultivadas e reduzir o desperdício",
+      "Proibir a exportação de alimentos para garantir abastecimento interno",
+      "Importar toda a produção alimentar de outros continentes"
+    ],
+    correct: 1,
+    explanation: "A FAO estima que precisaremos de 70% mais alimentos até 2050. A solução passa por aumentar produtividade com tecnologia, reduzir o desperdício (hoje 1/3 do alimento se perde) e distribuir melhor."
+  }
+];
+
+/* ─────────────────────────────────────────
+   2. ESTADO DO QUIZ
+   ───────────────────────────────────────── */
+let currentQuestion = 0; // índice da pergunta atual
+let score = 0;           // pontuação acumulada
+let answered = false;    // se a pergunta atual já foi respondida
+
+/* ─────────────────────────────────────────
+   3. ELEMENTOS DO DOM – QUIZ
+   ───────────────────────────────────────── */
+const quizStart    = document.getElementById('quizStart');
+const quizGame     = document.getElementById('quizGame');
+const quizResult   = document.getElementById('quizResult');
+const startBtn     = document.getElementById('startQuiz');
+const nextBtn      = document.getElementById('nextQuestion');
+const restartBtn   = document.getElementById('restartQuiz');
+const progressBar  = document.getElementById('progressBar');
+const questionCounter = document.getElementById('questionCounter');
+const scoreDisplay    = document.getElementById('scoreDisplay');
+const questionNumber  = document.getElementById('questionNumber');
+const questionText    = document.getElementById('questionText');
+const optionsGrid     = document.getElementById('optionsGrid');
+const feedbackArea    = document.getElementById('feedbackArea');
+const feedbackIcon    = document.getElementById('feedbackIcon');
+const feedbackText    = document.getElementById('feedbackText');
+const feedbackExpl    = document.getElementById('feedbackExplanation');
+const finalScore      = document.getElementById('finalScore');
+const resultIcon      = document.getElementById('resultIcon');
+const resultTitle     = document.getElementById('resultTitle');
+const resultMessage   = document.getElementById('resultMessage');
+const resultBar       = document.getElementById('resultBar');
+
+/* ─────────────────────────────────────────
+   4. FUNÇÕES DO QUIZ
+   ───────────────────────────────────────── */
+
 /**
- * AGRINHO 2026 — Raízes do Futuro
- * script.js — Interatividade completa
- *
- * Funcionalidades:
- *  1. Navbar scroll / menu mobile
- *  2. Scroll reveal (Intersection Observer)
- *  3. Contadores animados (estatísticas)
- *  4. Botão "Voltar ao topo"
- *  5. Quiz interativo com 10 perguntas
+ * Exibe a tela indicada e oculta as demais.
+ * @param {HTMLElement} screen – tela a exibir
  */
+function showScreen(screen) {
+  [quizStart, quizGame, quizResult].forEach(s => s.classList.remove('active'));
+  screen.classList.add('active');
+}
 
-/* =========================================================
-   1. NAVBAR
-   ========================================================= */
-(function initNavbar() {
-  const navbar   = document.getElementById('navbar');
-  const toggle   = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  const links    = navLinks.querySelectorAll('a');
+/**
+ * Carrega a pergunta atual na tela do jogo.
+ */
+function loadQuestion() {
+  answered = false;
+  const data = quizData[currentQuestion];
+  const letters = ['A', 'B', 'C', 'D'];
 
-  /* Adiciona classe "scrolled" ao rolar */
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }, { passive: true });
+  // Atualiza número, texto e barra de progresso
+  questionNumber.textContent   = String(currentQuestion + 1).padStart(2, '0');
+  questionText.textContent     = data.question;
+  questionCounter.textContent  = `Pergunta ${currentQuestion + 1} de ${quizData.length}`;
+  scoreDisplay.textContent     = `Pontuação: ${score}`;
+  progressBar.style.width      = `${(currentQuestion / quizData.length) * 100}%`;
 
-  /* Toggle mobile */
-  toggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+  // Esconde feedback e gera opções
+  feedbackArea.style.display = 'none';
+  optionsGrid.innerHTML = '';
+
+  data.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${letters[idx]}</span>${opt}`;
+    btn.addEventListener('click', () => selectAnswer(idx, btn));
+    optionsGrid.appendChild(btn);
+  });
+}
+
+/**
+ * Processa a escolha do usuário.
+ * @param {number}      idx – índice da opção clicada
+ * @param {HTMLElement} btn – botão clicado
+ */
+function selectAnswer(idx, btn) {
+  if (answered) return; // ignora cliques duplos
+  answered = true;
+
+  const correct = quizData[currentQuestion].correct;
+  const isRight  = (idx === correct);
+
+  // Destaca certo/errado em todas as opções
+  const allBtns = optionsGrid.querySelectorAll('.option-btn');
+  allBtns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === correct) b.classList.add('correct');
+    if (i === idx && !isRight) b.classList.add('wrong');
   });
 
-  /* Fecha menu ao clicar num link */
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+  // Atualiza pontuação
+  if (isRight) score++;
+  scoreDisplay.textContent = `Pontuação: ${score}`;
+
+  // Mostra feedback
+  feedbackIcon.textContent       = isRight ? '✅' : '❌';
+  feedbackText.textContent       = isRight ? 'Resposta correta! 🎉' : 'Resposta incorreta!';
+  feedbackExpl.textContent       = quizData[currentQuestion].explanation;
+  feedbackArea.style.display     = 'block';
+
+  // Texto do botão de próxima pergunta
+  nextBtn.textContent = (currentQuestion < quizData.length - 1) ? 'Próxima →' : 'Ver resultado 🏆';
+}
+
+/**
+ * Avança para a próxima pergunta ou exibe resultado final.
+ */
+function goNext() {
+  currentQuestion++;
+
+  if (currentQuestion < quizData.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+/**
+ * Exibe a tela de resultado final com mensagem personalizada.
+ */
+function showResult() {
+  showScreen(quizResult);
+  finalScore.textContent = score;
+
+  // Barra de resultado (animação com delay)
+  setTimeout(() => {
+    resultBar.style.width = `${(score / quizData.length) * 100}%`;
+  }, 200);
+
+  // Mensagem e ícone conforme pontuação
+  if (score <= 3) {
+    resultIcon.textContent   = '🌱';
+    resultTitle.textContent  = 'Continue aprendendo!';
+    resultMessage.textContent = 'Não desanime! O campo do futuro tem muito para te ensinar. Revise o conteúdo e tente novamente — você vai longe!';
+  } else if (score <= 7) {
+    resultIcon.textContent   = '🌻';
+    resultTitle.textContent  = 'Você está no caminho certo!';
+    resultMessage.textContent = 'Ótimo desempenho! Você já conhece bastante sobre sustentabilidade e tecnologia rural. Continue estudando para chegar ao topo!';
+  } else {
+    resultIcon.textContent   = '🏆';
+    resultTitle.textContent  = 'Parabéns! Você é um especialista do Agrinho!';
+    resultMessage.textContent = 'Incrível! Você domina os temas de agricultura sustentável e tecnologia no campo. O futuro do Brasil precisa de pessoas como você!';
+  }
+
+  // Atualiza barra de progresso para 100%
+  progressBar.style.width = '100%';
+  questionCounter.textContent = `Pergunta ${quizData.length} de ${quizData.length}`;
+}
+
+/**
+ * Reinicia o quiz do zero.
+ */
+function restartQuiz() {
+  currentQuestion = 0;
+  score            = 0;
+  answered         = false;
+  progressBar.style.width  = '0%';
+  resultBar.style.width    = '0%';
+  showScreen(quizStart);
+}
+
+/* ─────────────────────────────────────────
+   5. EVENTOS DO QUIZ
+   ───────────────────────────────────────── */
+startBtn.addEventListener('click', () => {
+  showScreen(quizGame);
+  loadQuestion();
+});
+
+nextBtn.addEventListener('click', goNext);
+restartBtn.addEventListener('click', restartQuiz);
+
+/* ─────────────────────────────────────────
+   6. NAVEGAÇÃO SUAVE (Smooth Scroll)
+   ───────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+
+    // Fecha o menu mobile se estiver aberto
+    navLinks.classList.remove('open');
+
+    const navHeight = navbar.offsetHeight;
+    const offsetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  });
+});
+
+/* ─────────────────────────────────────────
+   7. NAVBAR – sticky & hamburger
+   ───────────────────────────────────────── */
+const navbar    = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+
+// Muda estilo da navbar ao rolar
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// Toggle menu mobile
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+// Fecha menu ao clicar fora
+document.addEventListener('click', e => {
+  if (!navbar.contains(e.target)) {
+    navLinks.classList.remove('open');
+  }
+});
+
+/* ─────────────────────────────────────────
+   8. BOTÃO VOLTAR AO TOPO
+   ───────────────────────────────────────── */
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+}, { passive: true });
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ─────────────────────────────────────────
+   9. ANIMAÇÕES AO ROLAR (Intersection Observer)
+   ───────────────────────────────────────── */
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target); // anima só uma vez
+      }
     });
-  });
-})();
+  },
+  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+);
 
+// Observa todos os elementos com classe .reveal
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
+});
 
-/* =========================================================
-   2. SCROLL REVEAL
-   ========================================================= */
-(function initReveal() {
-  const items = document.querySelectorAll('.reveal');
+/* ─────────────────────────────────────────
+   10. CONTADORES ANIMADOS (data-banner)
+   ───────────────────────────────────────── */
 
-  if (!items.length) return;
+/**
+ * Anima um número de 0 até o valor alvo.
+ * @param {HTMLElement} el     – elemento span do número
+ * @param {number}      target – valor final
+ * @param {number}      duration – duração em ms
+ */
+function animateCounter(el, target, duration = 1800) {
+  const start    = performance.now();
+  const startVal = 0;
 
-  const observer = new IntersectionObserver(
+  function update(now) {
+    const elapsed  = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Easing easeOutExpo
+    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    el.textContent = Math.round(startVal + (target - startVal) * eased);
+    if (progress < 1) requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+}
+
+// Dispara contadores quando o banner entrar na tela
+const dataBanner = document.querySelector('.data-banner');
+if (dataBanner) {
+  const counterObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // apenas uma vez
+          document.querySelectorAll('.data-number').forEach(el => {
+            animateCounter(el, parseInt(el.dataset.target, 10));
+          });
+          counterObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.3 }
   );
 
-  items.forEach(item => observer.observe(item));
-})();
+  counterObserver.observe(dataBanner);
+}
 
+/* ─────────────────────────────────────────
+   11. DESTAQUE DO LINK ATIVO NA NAVBAR
+       (baseado na seção visível)
+   ───────────────────────────────────────── */
+const sections  = document.querySelectorAll('section[id], header[id]');
+const navAnchors = document.querySelectorAll('.nav-link');
 
-/* =========================================================
-   3. CONTADORES ANIMADOS
-   ========================================================= */
-(function initCounters() {
-  const counters = document.querySelectorAll('.stat-num[data-target]');
-  if (!counters.length) return;
-
-  let started = false;
-
-  const runCounter = (el) => {
-    const target   = parseInt(el.dataset.target, 10);
-    const duration = 1600; // ms
-    const start    = performance.now();
-
-    const step = (now) => {
-      const elapsed  = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Easing out quart
-      const ease = 1 - Math.pow(1 - progress, 4);
-      el.textContent = Math.floor(ease * target);
-
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = target;
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (started) return;
-      if (entries.some(e => e.isIntersecting)) {
-        started = true;
-        counters.forEach(runCounter);
-        observer.disconnect();
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navAnchors.forEach(a => {
+          a.style.background = '';
+          a.style.color = '';
+          if (a.getAttribute('href') === `#${id}`) {
+            a.style.background = 'var(--verde-palido)';
+            a.style.color      = 'var(--verde-escuro)';
+          }
+        });
       }
-    },
-    { threshold: 0.4 }
-  );
+    });
+  },
+  { threshold: 0.4 }
+);
 
-  // Observa o pai (stats-row)
-  const statsRow = document.querySelector('.stats-row');
-  if (statsRow) observer.observe(statsRow);
-})();
+sections.forEach(s => sectionObserver.observe(s));
 
+/* ─────────────────────────────────────────
+   12. PARTÍCULAS DECORATIVAS NO HEADER
+       (pequenas bolinhas flutuantes)
+   ───────────────────────────────────────── */
+function createParticles() {
+  const header = document.querySelector('header');
+  if (!header) return;
 
-/* =========================================================
-   4. BOTÃO VOLTAR AO TOPO
-   ========================================================= */
-(function initBackToTop() {
-  const btn = document.getElementById('backToTop');
-  if (!btn) return;
+  const colors  = ['#81C784', '#42A5F5', '#FFD600', '#A5D6A7', '#BBDEFB'];
+  const count   = window.innerWidth < 768 ? 8 : 18;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
-    }
-  }, { passive: true });
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    const size   = Math.random() * 12 + 4; // 4–16px
+    const left   = Math.random() * 100;
+    const top    = Math.random() * 100;
+    const dur    = Math.random() * 8 + 5;  // 5–13s
+    const delay  = Math.random() * 6;
+    const color  = colors[Math.floor(Math.random() * colors.length)];
 
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
-
-
-/* =========================================================
-   5. QUIZ INTERATIVO
-   ========================================================= */
-(function initQuiz() {
-
-  /* ── BANCO DE PERGUNTAS (10 perguntas) ── */
-  const questions = [
-    {
-      question: 'O que é agricultura de precisão?',
-      options: [
-        'Plantar apenas culturas pequenas e delicadas',
-        'Usar GPS, sensores e dados para tomar decisões certeiras no campo',
-        'Fazer cálculos matemáticos sobre a lavoura',
-        'Plantar em fileiras muito retas'
-      ],
-      correct: 1,
-      feedback: 'Correto! A agricultura de precisão usa tecnologia como GPS e sensores para otimizar cada etapa da produção.'
-    },
-    {
-      question: 'Qual é o principal benefício dos drones na agricultura?',
-      options: [
-        'Substituir completamente o agricultor',
-        'Fotografar paisagens bonitas do campo',
-        'Monitorar lavouras e aplicar insumos com mais precisão e eficiência',
-        'Transportar colheita entre fazendas'
-      ],
-      correct: 2,
-      feedback: 'Exato! Drones podem monitorar a saúde das plantas e aplicar defensivos com muito mais precisão.'
-    },
-    {
-      question: 'Por que a preservação das abelhas é importante para a agricultura?',
-      options: [
-        'Produzem mel para venda',
-        'Afastam pragas das lavouras',
-        'São responsáveis pela polinização de um terço dos alimentos que consumimos',
-        'Indicam a qualidade do solo'
-      ],
-      correct: 2,
-      feedback: 'Correto! As abelhas polinizam cerca de ⅓ dos alimentos que consumimos. Sem elas, a produção seria muito menor.'
-    },
-    {
-      question: 'O que um sensor de solo mede na agricultura inteligente?',
-      options: [
-        'A velocidade do vento e temperatura do ar',
-        'O peso dos animais na propriedade',
-        'A presença de insetos voadores',
-        'Temperatura, umidade, pH e nutrientes do solo em tempo real'
-      ],
-      correct: 3,
-      feedback: 'Perfeito! Sensores de solo fornecem dados em tempo real, ajudando o produtor a tomar decisões precisas.'
-    },
-    {
-      question: 'Qual porcentagem da água doce mundial é consumida pela agricultura?',
-      options: [
-        'Cerca de 20%',
-        'Cerca de 40%',
-        'Cerca de 70%',
-        'Cerca de 90%'
-      ],
-      correct: 2,
-      feedback: 'Isso mesmo! A agricultura consome cerca de 70% da água doce do mundo, por isso a irrigação inteligente é tão importante.'
-    },
-    {
-      question: 'O que é sustentabilidade agrícola?',
-      options: [
-        'Produzir o máximo possível sem se preocupar com o meio ambiente',
-        'Produzir alimentos de forma eficiente preservando os recursos naturais para o futuro',
-        'Parar toda a produção agrícola para salvar o planeta',
-        'Usar apenas produtos químicos modernos na lavoura'
-      ],
-      correct: 1,
-      feedback: 'Correto! Sustentabilidade significa produzir bem hoje sem comprometer os recursos das gerações futuras.'
-    },
-    {
-      question: 'Como a energia solar beneficia as propriedades rurais?',
-      options: [
-        'Esquenta o solo para melhorar a plantação',
-        'Substitui completamente o trabalho dos animais',
-        'Gera energia limpa e barata, podendo abastecer a fazenda e vender o excedente',
-        'Elimina a necessidade de irrigação'
-      ],
-      correct: 2,
-      feedback: 'Exato! Propriedades rurais com painéis solares produzem sua própria energia limpa e ainda podem vender o excedente.'
-    },
-    {
-      question: 'Qual é a importância da agricultura para o Brasil?',
-      options: [
-        'É responsável por aproximadamente 33% do PIB nacional',
-        'Representa menos de 5% da economia do país',
-        'É importante apenas para o Nordeste',
-        'Só serve para consumo interno, sem exportações'
-      ],
-      correct: 0,
-      feedback: 'Correto! O agronegócio representa cerca de 33% do PIB brasileiro, exportando para mais de 180 países.'
-    },
-    {
-      question: 'O que é compostagem?',
-      options: [
-        'Um tipo de veneno agrícola',
-        'Uma técnica de regar plantas com água quente',
-        'A transformação de restos orgânicos em adubo natural',
-        'Um sistema de irrigação por gotejamento'
-      ],
-      correct: 2,
-      feedback: 'Perfeito! A compostagem transforma restos de alimentos e materiais orgânicos em adubo rico em nutrientes para o solo.'
-    },
-    {
-      question: 'Como a irrigação inteligente ajuda no campo?',
-      options: [
-        'Irriga com água quente para acelerar o crescimento das plantas',
-        'Libera água somente quando e onde as plantas precisam, economizando até 50%',
-        'Substitui a chuva completamente durante o ano todo',
-        'Adiciona fertilizantes diretamente no ar'
-      ],
-      correct: 1,
-      feedback: 'Isso mesmo! Sistemas de irrigação inteligente podem economizar até 50% de água comparados aos métodos tradicionais.'
-    }
-  ];
-
-  /* ── Elementos do DOM ── */
-  const quizStart    = document.getElementById('quizStart');
-  const quizGame     = document.getElementById('quizGame');
-  const quizResult   = document.getElementById('quizResult');
-  const startBtn     = document.getElementById('startQuizBtn');
-  const restartBtn   = document.getElementById('restartBtn');
-  const nextBtn      = document.getElementById('nextBtn');
-  const questionEl   = document.getElementById('quizQuestion');
-  const optionsEl    = document.getElementById('quizOptions');
-  const feedbackEl   = document.getElementById('quizFeedback');
-  const progressFill = document.getElementById('progressFill');
-  const progressLabel= document.getElementById('progressLabel');
-  const scoreDisplay = document.getElementById('scoreDisplay');
-  const progressBar  = document.querySelector('.quiz-progress-bar');
-  const resultEmoji  = document.getElementById('resultEmoji');
-  const resultTitle  = document.getElementById('resultTitle');
-  const resultDesc   = document.getElementById('resultDesc');
-  const finalScore   = document.getElementById('finalScore');
-
-  /* ── Estado do quiz ── */
-  let currentIndex = 0;
-  let score        = 0;
-  let answered     = false;
-  let shuffled     = [];
-
-  /* ── Embaralha array (Fisher-Yates) ── */
-  function shuffle(arr) {
-    const a = [...arr];
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
-
-  /* ── Inicia quiz ── */
-  function startQuiz() {
-    currentIndex = 0;
-    score = 0;
-    shuffled = shuffle(questions);
-
-    quizStart.classList.add('hidden');
-    quizResult.classList.add('hidden');
-    quizGame.classList.remove('hidden');
-
-    scoreDisplay.textContent = '0';
-    renderQuestion();
-  }
-
-  /* ── Renderiza pergunta atual ── */
-  function renderQuestion() {
-    answered = false;
-    const q = shuffled[currentIndex];
-
-    // Atualiza progresso
-    const pct = (currentIndex / questions.length) * 100;
-    progressFill.style.width = pct + '%';
-    progressBar.setAttribute('aria-valuenow', currentIndex);
-    progressLabel.textContent = `Pergunta ${currentIndex + 1} de ${questions.length}`;
-
-    // Texto da pergunta
-    questionEl.textContent = q.question;
-
-    // Limpa e cria opções
-    optionsEl.innerHTML = '';
-    q.options.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'quiz-option';
-      btn.textContent = opt;
-      btn.setAttribute('role', 'listitem');
-      btn.dataset.index = i;
-      btn.addEventListener('click', () => handleAnswer(i));
-      optionsEl.appendChild(btn);
+    Object.assign(p.style, {
+      position:        'absolute',
+      width:           `${size}px`,
+      height:          `${size}px`,
+      background:      color,
+      borderRadius:    '50%',
+      left:            `${left}%`,
+      top:             `${top}%`,
+      opacity:         '0.18',
+      pointerEvents:   'none',
+      zIndex:          '0',
+      animation:       `floatLeaf ${dur}s ease-in-out ${delay}s infinite`,
     });
 
-    // Esconde feedback e próximo
-    feedbackEl.classList.add('hidden');
-    feedbackEl.textContent = '';
-    feedbackEl.className = 'quiz-feedback hidden';
-    nextBtn.classList.add('hidden');
+    header.appendChild(p);
   }
+}
 
-  /* ── Processa resposta ── */
-  function handleAnswer(selectedIndex) {
-    if (answered) return;
-    answered = true;
+createParticles();
 
-    const q       = shuffled[currentIndex];
-    const correct = q.correct;
-    const buttons = optionsEl.querySelectorAll('.quiz-option');
+/* ─────────────────────────────────────────
+   13. EFEITO PARALLAX SUAVE NO HEADER
+   ───────────────────────────────────────── */
+const heroContent = document.querySelector('.hero-content');
 
-    // Desabilita todos
-    buttons.forEach(btn => { btn.disabled = true; });
-
-    // Destaca correta e errada
-    buttons[correct].classList.add('correct');
-    if (selectedIndex !== correct) {
-      buttons[selectedIndex].classList.add('wrong');
-    } else {
-      score++;
-      scoreDisplay.textContent = score;
+if (heroContent && window.innerWidth > 768) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < window.innerHeight) {
+      heroContent.style.transform = `translateY(${scrollY * 0.18}px)`;
+      heroContent.style.opacity   = `${1 - scrollY / (window.innerHeight * 0.8)}`;
     }
+  }, { passive: true });
+}
 
-    // Feedback
-    feedbackEl.classList.remove('hidden');
-    if (selectedIndex === correct) {
-      feedbackEl.className = 'quiz-feedback correct-fb';
-      feedbackEl.textContent = '✅ ' + q.feedback;
-    } else {
-      feedbackEl.className = 'quiz-feedback wrong-fb';
-      feedbackEl.textContent = '❌ ' + q.feedback;
-    }
+/* ─────────────────────────────────────────
+   14. ANIMAÇÃO INICIAL – Destaque do título
+   ───────────────────────────────────────── */
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+});/* =====================================================
+   RAÍZES DO FUTURO – AGRINHO 2026
+   script.js – Funcionalidades JavaScript
+   ===================================================== */
 
-    // Botão próximo
-    nextBtn.classList.remove('hidden');
-    nextBtn.textContent = (currentIndex < questions.length - 1)
-      ? 'Próxima →'
-      : 'Ver Resultado 🏁';
+/* ─────────────────────────────────────────
+   1. DADOS DO QUIZ – 10 perguntas
+   ───────────────────────────────────────── */
+const quizData = [
+  {
+    question: "O que é agricultura de precisão?",
+    options: [
+      "Cultivar apenas produtos orgânicos sem uso de máquinas",
+      "Usar tecnologias como GPS e sensores para otimizar o manejo de cada área da lavoura",
+      "Plantar em linhas muito retas usando régua e compasso",
+      "Tipo de agricultura praticada somente em pequenas propriedades"
+    ],
+    correct: 1,
+    explanation: "A agricultura de precisão usa GPS, drones, sensores e dados para aplicar insumos somente onde e quando necessário, reduzindo desperdícios e aumentando a produtividade."
+  },
+  {
+    question: "Qual é a principal vantagem do uso de drones na lavoura?",
+    options: [
+      "Substituir totalmente o trabalho dos agricultores",
+      "Monitorar grandes áreas rapidamente e detectar pragas e doenças precocemente",
+      "Transportar grãos colhidos até os silos",
+      "Fazer a irrigação das plantações por aspersão"
+    ],
+    correct: 1,
+    explanation: "Drones equipados com câmeras multiespectrais identificam doenças, pragas e deficiências nutricionais muito antes que o olho humano perceba, permitindo ação rápida e precisa."
+  },
+  {
+    question: "Quanto pode reduzir o consumo de água a irrigação por gotejamento inteligente em comparação ao método tradicional?",
+    options: [
+      "Cerca de 5%",
+      "Cerca de 20%",
+      "Até 60%",
+      "Apenas 10%"
+    ],
+    correct: 2,
+    explanation: "O gotejamento inteligente, combinado com sensores de umidade no solo, pode reduzir o consumo de água em até 60%, pois a água vai diretamente às raízes, sem evaporação nem escoamento."
+  },
+  {
+    question: "O que é energia bioelétrica (biogás) no contexto rural?",
+    options: [
+      "Energia gerada pela fermentação de resíduos orgânicos como dejetos animais e palha",
+      "Energia captada pelo vento nas torres eólicas do campo",
+      "Eletricidade gerada pela combustão de gasolina em geradores rurais",
+      "Energia solar armazenada em baterias de lítio"
+    ],
+    correct: 0,
+    explanation: "O biogás é produzido pela digestão anaeróbica de resíduos orgânicos (esterco, bagaço, palha). O gás gerado alimenta motores ou gera eletricidade, aproveitando o que seria descartado."
+  },
+  {
+    question: "O que é o Código Florestal Brasileiro?",
+    options: [
+      "Lei que proíbe completamente qualquer desmatamento no Brasil",
+      "Lei que regula o uso da terra, exigindo Áreas de Preservação Permanente e Reservas Legais nas propriedades rurais",
+      "Regras sobre como plantar árvores frutíferas em quintais urbanos",
+      "Decreto que libera a exportação de madeira nativa para outros países"
+    ],
+    correct: 1,
+    explanation: "O Código Florestal (Lei 12.651/2012) estabelece APPs (Áreas de Preservação Permanente) e Reservas Legais nas propriedades rurais, equilibrando produção agrícola com proteção ambiental."
+  },
+  {
+    question: "Qual é a relação entre campo e cidade no abastecimento alimentar?",
+    options: [
+      "A cidade produz alimentos em fazendas verticais e não depende do campo",
+      "Cerca de 70% dos alimentos que chegam à mesa urbana vêm de pequenos e médios produtores rurais",
+      "O campo só produz commodities para exportação, sem impacto no consumo interno",
+      "O campo e a cidade não têm relação direta na questão alimentar"
+    ],
+    correct: 1,
+    explanation: "Pequenos e médios produtores rurais respondem por grande parte dos alimentos consumidos nas cidades brasileiras, especialmente hortifrúti, leite, ovos e carnes."
+  },
+  {
+    question: "O que significa o conceito de 'segurança alimentar'?",
+    options: [
+      "Utilizar agrotóxicos para garantir que a comida não tenha pragas",
+      "Garantia de acesso de todas as pessoas a alimentos suficientes, saudáveis e de qualidade",
+      "Código de segurança nas embalagens dos alimentos industrializados",
+      "Sistema de câmeras de vigilância nos supermercados"
+    ],
+    correct: 1,
+    explanation: "Segundo a FAO, segurança alimentar existe quando todas as pessoas têm acesso físico, social e econômico a alimentos suficientes, seguros e nutritivos, em quantidade e qualidade."
+  },
+  {
+    question: "Como a Inteligência Artificial (IA) pode ajudar na agricultura?",
+    options: [
+      "Substituir completamente o produtor rural em todas as decisões",
+      "Prever doenças, calcular o melhor momento de plantio e identificar deficiências nutricionais por imagens de satélite",
+      "Criar novos organismos geneticamente modificados sem supervisão humana",
+      "Automatizar apenas o processo de embalagem dos produtos no galpão"
+    ],
+    correct: 1,
+    explanation: "A IA analisa dados climáticos, históricos e imagens de satélite para recomendar quando plantar, irrigar e colher, além de identificar pragas e calcular doses precisas de fertilizantes."
+  },
+  {
+    question: "O que é agrofloresta (sistemas agroflorestais)?",
+    options: [
+      "Técnica de plantar somente florestas de eucalipto para celulose",
+      "Sistema que integra árvores, culturas agrícolas e/ou animais na mesma área, beneficiando todos os componentes",
+      "Método de desmatar e plantar soja em seguida para máxima produção",
+      "Tipo de estufa para cultivar plantas em ambiente controlado"
+    ],
+    correct: 1,
+    explanation: "A agrofloresta combina árvores com culturas e/ou animais, imitando a natureza. Ela melhora o solo, conserva a água, aumenta a biodiversidade e produz alimentos — tudo ao mesmo tempo."
+  },
+  {
+    question: "Qual é um dos maiores desafios para alimentar 10 bilhões de pessoas em 2050?",
+    options: [
+      "Reduzir a produção agrícola para poupar o meio ambiente",
+      "Produzir 70% mais alimentos sem expandir significativamente as áreas cultivadas e reduzir o desperdício",
+      "Proibir a exportação de alimentos para garantir abastecimento interno",
+      "Importar toda a produção alimentar de outros continentes"
+    ],
+    correct: 1,
+    explanation: "A FAO estima que precisaremos de 70% mais alimentos até 2050. A solução passa por aumentar produtividade com tecnologia, reduzir o desperdício (hoje 1/3 do alimento se perde) e distribuir melhor."
   }
+];
 
-  /* ── Avança pergunta ── */
-  function nextQuestion() {
-    currentIndex++;
-    if (currentIndex < questions.length) {
-      renderQuestion();
-    } else {
-      showResult();
-    }
-  }
+/* ─────────────────────────────────────────
+   2. ESTADO DO QUIZ
+   ───────────────────────────────────────── */
+let currentQuestion = 0; // índice da pergunta atual
+let score = 0;           // pontuação acumulada
+let answered = false;    // se a pergunta atual já foi respondida
 
-  /* ── Exibe resultado final ── */
-  function showResult() {
-    quizGame.classList.add('hidden');
-    quizResult.classList.remove('hidden');
+/* ─────────────────────────────────────────
+   3. ELEMENTOS DO DOM – QUIZ
+   ───────────────────────────────────────── */
+const quizStart    = document.getElementById('quizStart');
+const quizGame     = document.getElementById('quizGame');
+const quizResult   = document.getElementById('quizResult');
+const startBtn     = document.getElementById('startQuiz');
+const nextBtn      = document.getElementById('nextQuestion');
+const restartBtn   = document.getElementById('restartQuiz');
+const progressBar  = document.getElementById('progressBar');
+const questionCounter = document.getElementById('questionCounter');
+const scoreDisplay    = document.getElementById('scoreDisplay');
+const questionNumber  = document.getElementById('questionNumber');
+const questionText    = document.getElementById('questionText');
+const optionsGrid     = document.getElementById('optionsGrid');
+const feedbackArea    = document.getElementById('feedbackArea');
+const feedbackIcon    = document.getElementById('feedbackIcon');
+const feedbackText    = document.getElementById('feedbackText');
+const feedbackExpl    = document.getElementById('feedbackExplanation');
+const finalScore      = document.getElementById('finalScore');
+const resultIcon      = document.getElementById('resultIcon');
+const resultTitle     = document.getElementById('resultTitle');
+const resultMessage   = document.getElementById('resultMessage');
+const resultBar       = document.getElementById('resultBar');
 
-    // Barra 100%
-    progressFill.style.width = '100%';
+/* ─────────────────────────────────────────
+   4. FUNÇÕES DO QUIZ
+   ───────────────────────────────────────── */
 
-    finalScore.textContent = score;
+/**
+ * Exibe a tela indicada e oculta as demais.
+ * @param {HTMLElement} screen – tela a exibir
+ */
+function showScreen(screen) {
+  [quizStart, quizGame, quizResult].forEach(s => s.classList.remove('active'));
+  screen.classList.add('active');
+}
 
-    /* Faixas de pontuação */
-    let emoji, title, desc;
-    if (score <= 3) {
-      emoji = '🌱';
-      title = 'Você está começando sua jornada!';
-      desc  = `Com ${score} acerto(s), você ainda tem muito para descobrir sobre sustentabilidade e tecnologia no campo. Continue aprendendo — cada passo conta!`;
-    } else if (score <= 7) {
-      emoji = '🌿';
-      title = 'Você já conhece bastante sobre sustentabilidade!';
-      desc  = `Ótimo resultado! Com ${score} acertos, você demonstra um bom conhecimento sobre o tema. Continue explorando para se tornar um especialista!`;
-    } else {
-      emoji = '🏆';
-      title = 'Parabéns! Você é um Guardião do Futuro Rural!';
-      desc  = `Impressionante! ${score} de 10 acertos! Você tem um conhecimento excelente sobre tecnologia e sustentabilidade no campo. O futuro agradece!`;
-    }
+/**
+ * Carrega a pergunta atual na tela do jogo.
+ */
+function loadQuestion() {
+  answered = false;
+  const data = quizData[currentQuestion];
+  const letters = ['A', 'B', 'C', 'D'];
 
-    resultEmoji.textContent = emoji;
-    resultTitle.textContent = title;
-    resultDesc.textContent  = desc;
-  }
+  // Atualiza número, texto e barra de progresso
+  questionNumber.textContent   = String(currentQuestion + 1).padStart(2, '0');
+  questionText.textContent     = data.question;
+  questionCounter.textContent  = `Pergunta ${currentQuestion + 1} de ${quizData.length}`;
+  scoreDisplay.textContent     = `Pontuação: ${score}`;
+  progressBar.style.width      = `${(currentQuestion / quizData.length) * 100}%`;
 
-  /* ── Event listeners ── */
-  if (startBtn)   startBtn.addEventListener('click', startQuiz);
-  if (restartBtn) restartBtn.addEventListener('click', startQuiz);
-  if (nextBtn)    nextBtn.addEventListener('click', nextQuestion);
+  // Esconde feedback e gera opções
+  feedbackArea.style.display = 'none';
+  optionsGrid.innerHTML = '';
 
-})();
-
-
-/* =========================================================
-   UTILITÁRIO: Feedback de acessibilidade — foco no quiz
-   ao pressionar Enter em cartões de tecnologia
-   ========================================================= */
-document.querySelectorAll('.tec-card').forEach(card => {
-  card.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      card.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    }
+  data.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${letters[idx]}</span>${opt}`;
+    btn.addEventListener('click', () => selectAnswer(idx, btn));
+    optionsGrid.appendChild(btn);
   });
+}
+
+/**
+ * Processa a escolha do usuário.
+ * @param {number}      idx – índice da opção clicada
+ * @param {HTMLElement} btn – botão clicado
+ */
+function selectAnswer(idx, btn) {
+  if (answered) return; // ignora cliques duplos
+  answered = true;
+
+  const correct = quizData[currentQuestion].correct;
+  const isRight  = (idx === correct);
+
+  // Destaca certo/errado em todas as opções
+  const allBtns = optionsGrid.querySelectorAll('.option-btn');
+  allBtns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === correct) b.classList.add('correct');
+    if (i === idx && !isRight) b.classList.add('wrong');
+  });
+
+  // Atualiza pontuação
+  if (isRight) score++;
+  scoreDisplay.textContent = `Pontuação: ${score}`;
+
+  // Mostra feedback
+  feedbackIcon.textContent       = isRight ? '✅' : '❌';
+  feedbackText.textContent       = isRight ? 'Resposta correta! 🎉' : 'Resposta incorreta!';
+  feedbackExpl.textContent       = quizData[currentQuestion].explanation;
+  feedbackArea.style.display     = 'block';
+
+  // Texto do botão de próxima pergunta
+  nextBtn.textContent = (currentQuestion < quizData.length - 1) ? 'Próxima →' : 'Ver resultado 🏆';
+}
+
+/**
+ * Avança para a próxima pergunta ou exibe resultado final.
+ */
+function goNext() {
+  currentQuestion++;
+
+  if (currentQuestion < quizData.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+/**
+ * Exibe a tela de resultado final com mensagem personalizada.
+ */
+function showResult() {
+  showScreen(quizResult);
+  finalScore.textContent = score;
+
+  // Barra de resultado (animação com delay)
+  setTimeout(() => {
+    resultBar.style.width = `${(score / quizData.length) * 100}%`;
+  }, 200);
+
+  // Mensagem e ícone conforme pontuação
+  if (score <= 3) {
+    resultIcon.textContent   = '🌱';
+    resultTitle.textContent  = 'Continue aprendendo!';
+    resultMessage.textContent = 'Não desanime! O campo do futuro tem muito para te ensinar. Revise o conteúdo e tente novamente — você vai longe!';
+  } else if (score <= 7) {
+    resultIcon.textContent   = '🌻';
+    resultTitle.textContent  = 'Você está no caminho certo!';
+    resultMessage.textContent = 'Ótimo desempenho! Você já conhece bastante sobre sustentabilidade e tecnologia rural. Continue estudando para chegar ao topo!';
+  } else {
+    resultIcon.textContent   = '🏆';
+    resultTitle.textContent  = 'Parabéns! Você é um especialista do Agrinho!';
+    resultMessage.textContent = 'Incrível! Você domina os temas de agricultura sustentável e tecnologia no campo. O futuro do Brasil precisa de pessoas como você!';
+  }
+
+  // Atualiza barra de progresso para 100%
+  progressBar.style.width = '100%';
+  questionCounter.textContent = `Pergunta ${quizData.length} de ${quizData.length}`;
+}
+
+/**
+ * Reinicia o quiz do zero.
+ */
+function restartQuiz() {
+  currentQuestion = 0;
+  score            = 0;
+  answered         = false;
+  progressBar.style.width  = '0%';
+  resultBar.style.width    = '0%';
+  showScreen(quizStart);
+}
+
+/* ─────────────────────────────────────────
+   5. EVENTOS DO QUIZ
+   ───────────────────────────────────────── */
+startBtn.addEventListener('click', () => {
+  showScreen(quizGame);
+  loadQuestion();
+});
+
+nextBtn.addEventListener('click', goNext);
+restartBtn.addEventListener('click', restartQuiz);
+
+/* ─────────────────────────────────────────
+   6. NAVEGAÇÃO SUAVE (Smooth Scroll)
+   ───────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+
+    // Fecha o menu mobile se estiver aberto
+    navLinks.classList.remove('open');
+
+    const navHeight = navbar.offsetHeight;
+    const offsetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  });
+});
+
+/* ─────────────────────────────────────────
+   7. NAVBAR – sticky & hamburger
+   ───────────────────────────────────────── */
+const navbar    = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+
+// Muda estilo da navbar ao rolar
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// Toggle menu mobile
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+// Fecha menu ao clicar fora
+document.addEventListener('click', e => {
+  if (!navbar.contains(e.target)) {
+    navLinks.classList.remove('open');
+  }
+});
+
+/* ─────────────────────────────────────────
+   8. BOTÃO VOLTAR AO TOPO
+   ───────────────────────────────────────── */
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+}, { passive: true });
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ─────────────────────────────────────────
+   9. ANIMAÇÕES AO ROLAR (Intersection Observer)
+   ───────────────────────────────────────── */
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target); // anima só uma vez
+      }
+    });
+  },
+  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+);
+
+// Observa todos os elementos com classe .reveal
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
+});
+
+/* ─────────────────────────────────────────
+   10. CONTADORES ANIMADOS (data-banner)
+   ───────────────────────────────────────── */
+
+/**
+ * Anima um número de 0 até o valor alvo.
+ * @param {HTMLElement} el     – elemento span do número
+ * @param {number}      target – valor final
+ * @param {number}      duration – duração em ms
+ */
+function animateCounter(el, target, duration = 1800) {
+  const start    = performance.now();
+  const startVal = 0;
+
+  function update(now) {
+    const elapsed  = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Easing easeOutExpo
+    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    el.textContent = Math.round(startVal + (target - startVal) * eased);
+    if (progress < 1) requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+}
+
+// Dispara contadores quando o banner entrar na tela
+const dataBanner = document.querySelector('.data-banner');
+if (dataBanner) {
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.data-number').forEach(el => {
+            animateCounter(el, parseInt(el.dataset.target, 10));
+          });
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  counterObserver.observe(dataBanner);
+}
+
+/* ─────────────────────────────────────────
+   11. DESTAQUE DO LINK ATIVO NA NAVBAR
+       (baseado na seção visível)
+   ───────────────────────────────────────── */
+const sections  = document.querySelectorAll('section[id], header[id]');
+const navAnchors = document.querySelectorAll('.nav-link');
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navAnchors.forEach(a => {
+          a.style.background = '';
+          a.style.color = '';
+          if (a.getAttribute('href') === `#${id}`) {
+            a.style.background = 'var(--verde-palido)';
+            a.style.color      = 'var(--verde-escuro)';
+          }
+        });
+      }
+    });
+  },
+  { threshold: 0.4 }
+);
+
+sections.forEach(s => sectionObserver.observe(s));
+
+/* ─────────────────────────────────────────
+   12. PARTÍCULAS DECORATIVAS NO HEADER
+       (pequenas bolinhas flutuantes)
+   ───────────────────────────────────────── */
+function createParticles() {
+  const header = document.querySelector('header');
+  if (!header) return;
+
+  const colors  = ['#81C784', '#42A5F5', '#FFD600', '#A5D6A7', '#BBDEFB'];
+  const count   = window.innerWidth < 768 ? 8 : 18;
+
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    const size   = Math.random() * 12 + 4; // 4–16px
+    const left   = Math.random() * 100;
+    const top    = Math.random() * 100;
+    const dur    = Math.random() * 8 + 5;  // 5–13s
+    const delay  = Math.random() * 6;
+    const color  = colors[Math.floor(Math.random() * colors.length)];
+
+    Object.assign(p.style, {
+      position:        'absolute',
+      width:           `${size}px`,
+      height:          `${size}px`,
+      background:      color,
+      borderRadius:    '50%',
+      left:            `${left}%`,
+      top:             `${top}%`,
+      opacity:         '0.18',
+      pointerEvents:   'none',
+      zIndex:          '0',
+      animation:       `floatLeaf ${dur}s ease-in-out ${delay}s infinite`,
+    });
+
+    header.appendChild(p);
+  }
+}
+
+createParticles();
+
+/* ─────────────────────────────────────────
+   13. EFEITO PARALLAX SUAVE NO HEADER
+   ───────────────────────────────────────── */
+const heroContent = document.querySelector('.hero-content');
+
+if (heroContent && window.innerWidth > 768) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < window.innerHeight) {
+      heroContent.style.transform = `translateY(${scrollY * 0.18}px)`;
+      heroContent.style.opacity   = `${1 - scrollY / (window.innerHeight * 0.8)}`;
+    }
+  }, { passive: true });
+}
+
+/* ─────────────────────────────────────────
+   14. ANIMAÇÃO INICIAL – Destaque do título
+   ───────────────────────────────────────── */
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+});/* =====================================================
+   RAÍZES DO FUTURO – AGRINHO 2026
+   script.js – Funcionalidades JavaScript
+   ===================================================== */
+
+/* ─────────────────────────────────────────
+   1. DADOS DO QUIZ – 10 perguntas
+   ───────────────────────────────────────── */
+const quizData = [
+  {
+    question: "O que é agricultura de precisão?",
+    options: [
+      "Cultivar apenas produtos orgânicos sem uso de máquinas",
+      "Usar tecnologias como GPS e sensores para otimizar o manejo de cada área da lavoura",
+      "Plantar em linhas muito retas usando régua e compasso",
+      "Tipo de agricultura praticada somente em pequenas propriedades"
+    ],
+    correct: 1,
+    explanation: "A agricultura de precisão usa GPS, drones, sensores e dados para aplicar insumos somente onde e quando necessário, reduzindo desperdícios e aumentando a produtividade."
+  },
+  {
+    question: "Qual é a principal vantagem do uso de drones na lavoura?",
+    options: [
+      "Substituir totalmente o trabalho dos agricultores",
+      "Monitorar grandes áreas rapidamente e detectar pragas e doenças precocemente",
+      "Transportar grãos colhidos até os silos",
+      "Fazer a irrigação das plantações por aspersão"
+    ],
+    correct: 1,
+    explanation: "Drones equipados com câmeras multiespectrais identificam doenças, pragas e deficiências nutricionais muito antes que o olho humano perceba, permitindo ação rápida e precisa."
+  },
+  {
+    question: "Quanto pode reduzir o consumo de água a irrigação por gotejamento inteligente em comparação ao método tradicional?",
+    options: [
+      "Cerca de 5%",
+      "Cerca de 20%",
+      "Até 60%",
+      "Apenas 10%"
+    ],
+    correct: 2,
+    explanation: "O gotejamento inteligente, combinado com sensores de umidade no solo, pode reduzir o consumo de água em até 60%, pois a água vai diretamente às raízes, sem evaporação nem escoamento."
+  },
+  {
+    question: "O que é energia bioelétrica (biogás) no contexto rural?",
+    options: [
+      "Energia gerada pela fermentação de resíduos orgânicos como dejetos animais e palha",
+      "Energia captada pelo vento nas torres eólicas do campo",
+      "Eletricidade gerada pela combustão de gasolina em geradores rurais",
+      "Energia solar armazenada em baterias de lítio"
+    ],
+    correct: 0,
+    explanation: "O biogás é produzido pela digestão anaeróbica de resíduos orgânicos (esterco, bagaço, palha). O gás gerado alimenta motores ou gera eletricidade, aproveitando o que seria descartado."
+  },
+  {
+    question: "O que é o Código Florestal Brasileiro?",
+    options: [
+      "Lei que proíbe completamente qualquer desmatamento no Brasil",
+      "Lei que regula o uso da terra, exigindo Áreas de Preservação Permanente e Reservas Legais nas propriedades rurais",
+      "Regras sobre como plantar árvores frutíferas em quintais urbanos",
+      "Decreto que libera a exportação de madeira nativa para outros países"
+    ],
+    correct: 1,
+    explanation: "O Código Florestal (Lei 12.651/2012) estabelece APPs (Áreas de Preservação Permanente) e Reservas Legais nas propriedades rurais, equilibrando produção agrícola com proteção ambiental."
+  },
+  {
+    question: "Qual é a relação entre campo e cidade no abastecimento alimentar?",
+    options: [
+      "A cidade produz alimentos em fazendas verticais e não depende do campo",
+      "Cerca de 70% dos alimentos que chegam à mesa urbana vêm de pequenos e médios produtores rurais",
+      "O campo só produz commodities para exportação, sem impacto no consumo interno",
+      "O campo e a cidade não têm relação direta na questão alimentar"
+    ],
+    correct: 1,
+    explanation: "Pequenos e médios produtores rurais respondem por grande parte dos alimentos consumidos nas cidades brasileiras, especialmente hortifrúti, leite, ovos e carnes."
+  },
+  {
+    question: "O que significa o conceito de 'segurança alimentar'?",
+    options: [
+      "Utilizar agrotóxicos para garantir que a comida não tenha pragas",
+      "Garantia de acesso de todas as pessoas a alimentos suficientes, saudáveis e de qualidade",
+      "Código de segurança nas embalagens dos alimentos industrializados",
+      "Sistema de câmeras de vigilância nos supermercados"
+    ],
+    correct: 1,
+    explanation: "Segundo a FAO, segurança alimentar existe quando todas as pessoas têm acesso físico, social e econômico a alimentos suficientes, seguros e nutritivos, em quantidade e qualidade."
+  },
+  {
+    question: "Como a Inteligência Artificial (IA) pode ajudar na agricultura?",
+    options: [
+      "Substituir completamente o produtor rural em todas as decisões",
+      "Prever doenças, calcular o melhor momento de plantio e identificar deficiências nutricionais por imagens de satélite",
+      "Criar novos organismos geneticamente modificados sem supervisão humana",
+      "Automatizar apenas o processo de embalagem dos produtos no galpão"
+    ],
+    correct: 1,
+    explanation: "A IA analisa dados climáticos, históricos e imagens de satélite para recomendar quando plantar, irrigar e colher, além de identificar pragas e calcular doses precisas de fertilizantes."
+  },
+  {
+    question: "O que é agrofloresta (sistemas agroflorestais)?",
+    options: [
+      "Técnica de plantar somente florestas de eucalipto para celulose",
+      "Sistema que integra árvores, culturas agrícolas e/ou animais na mesma área, beneficiando todos os componentes",
+      "Método de desmatar e plantar soja em seguida para máxima produção",
+      "Tipo de estufa para cultivar plantas em ambiente controlado"
+    ],
+    correct: 1,
+    explanation: "A agrofloresta combina árvores com culturas e/ou animais, imitando a natureza. Ela melhora o solo, conserva a água, aumenta a biodiversidade e produz alimentos — tudo ao mesmo tempo."
+  },
+  {
+    question: "Qual é um dos maiores desafios para alimentar 10 bilhões de pessoas em 2050?",
+    options: [
+      "Reduzir a produção agrícola para poupar o meio ambiente",
+      "Produzir 70% mais alimentos sem expandir significativamente as áreas cultivadas e reduzir o desperdício",
+      "Proibir a exportação de alimentos para garantir abastecimento interno",
+      "Importar toda a produção alimentar de outros continentes"
+    ],
+    correct: 1,
+    explanation: "A FAO estima que precisaremos de 70% mais alimentos até 2050. A solução passa por aumentar produtividade com tecnologia, reduzir o desperdício (hoje 1/3 do alimento se perde) e distribuir melhor."
+  }
+];
+
+/* ─────────────────────────────────────────
+   2. ESTADO DO QUIZ
+   ───────────────────────────────────────── */
+let currentQuestion = 0; // índice da pergunta atual
+let score = 0;           // pontuação acumulada
+let answered = false;    // se a pergunta atual já foi respondida
+
+/* ─────────────────────────────────────────
+   3. ELEMENTOS DO DOM – QUIZ
+   ───────────────────────────────────────── */
+const quizStart    = document.getElementById('quizStart');
+const quizGame     = document.getElementById('quizGame');
+const quizResult   = document.getElementById('quizResult');
+const startBtn     = document.getElementById('startQuiz');
+const nextBtn      = document.getElementById('nextQuestion');
+const restartBtn   = document.getElementById('restartQuiz');
+const progressBar  = document.getElementById('progressBar');
+const questionCounter = document.getElementById('questionCounter');
+const scoreDisplay    = document.getElementById('scoreDisplay');
+const questionNumber  = document.getElementById('questionNumber');
+const questionText    = document.getElementById('questionText');
+const optionsGrid     = document.getElementById('optionsGrid');
+const feedbackArea    = document.getElementById('feedbackArea');
+const feedbackIcon    = document.getElementById('feedbackIcon');
+const feedbackText    = document.getElementById('feedbackText');
+const feedbackExpl    = document.getElementById('feedbackExplanation');
+const finalScore      = document.getElementById('finalScore');
+const resultIcon      = document.getElementById('resultIcon');
+const resultTitle     = document.getElementById('resultTitle');
+const resultMessage   = document.getElementById('resultMessage');
+const resultBar       = document.getElementById('resultBar');
+
+/* ─────────────────────────────────────────
+   4. FUNÇÕES DO QUIZ
+   ───────────────────────────────────────── */
+
+/**
+ * Exibe a tela indicada e oculta as demais.
+ * @param {HTMLElement} screen – tela a exibir
+ */
+function showScreen(screen) {
+  [quizStart, quizGame, quizResult].forEach(s => s.classList.remove('active'));
+  screen.classList.add('active');
+}
+
+/**
+ * Carrega a pergunta atual na tela do jogo.
+ */
+function loadQuestion() {
+  answered = false;
+  const data = quizData[currentQuestion];
+  const letters = ['A', 'B', 'C', 'D'];
+
+  // Atualiza número, texto e barra de progresso
+  questionNumber.textContent   = String(currentQuestion + 1).padStart(2, '0');
+  questionText.textContent     = data.question;
+  questionCounter.textContent  = `Pergunta ${currentQuestion + 1} de ${quizData.length}`;
+  scoreDisplay.textContent     = `Pontuação: ${score}`;
+  progressBar.style.width      = `${(currentQuestion / quizData.length) * 100}%`;
+
+  // Esconde feedback e gera opções
+  feedbackArea.style.display = 'none';
+  optionsGrid.innerHTML = '';
+
+  data.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${letters[idx]}</span>${opt}`;
+    btn.addEventListener('click', () => selectAnswer(idx, btn));
+    optionsGrid.appendChild(btn);
+  });
+}
+
+/**
+ * Processa a escolha do usuário.
+ * @param {number}      idx – índice da opção clicada
+ * @param {HTMLElement} btn – botão clicado
+ */
+function selectAnswer(idx, btn) {
+  if (answered) return; // ignora cliques duplos
+  answered = true;
+
+  const correct = quizData[currentQuestion].correct;
+  const isRight  = (idx === correct);
+
+  // Destaca certo/errado em todas as opções
+  const allBtns = optionsGrid.querySelectorAll('.option-btn');
+  allBtns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === correct) b.classList.add('correct');
+    if (i === idx && !isRight) b.classList.add('wrong');
+  });
+
+  // Atualiza pontuação
+  if (isRight) score++;
+  scoreDisplay.textContent = `Pontuação: ${score}`;
+
+  // Mostra feedback
+  feedbackIcon.textContent       = isRight ? '✅' : '❌';
+  feedbackText.textContent       = isRight ? 'Resposta correta! 🎉' : 'Resposta incorreta!';
+  feedbackExpl.textContent       = quizData[currentQuestion].explanation;
+  feedbackArea.style.display     = 'block';
+
+  // Texto do botão de próxima pergunta
+  nextBtn.textContent = (currentQuestion < quizData.length - 1) ? 'Próxima →' : 'Ver resultado 🏆';
+}
+
+/**
+ * Avança para a próxima pergunta ou exibe resultado final.
+ */
+function goNext() {
+  currentQuestion++;
+
+  if (currentQuestion < quizData.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+/**
+ * Exibe a tela de resultado final com mensagem personalizada.
+ */
+function showResult() {
+  showScreen(quizResult);
+  finalScore.textContent = score;
+
+  // Barra de resultado (animação com delay)
+  setTimeout(() => {
+    resultBar.style.width = `${(score / quizData.length) * 100}%`;
+  }, 200);
+
+  // Mensagem e ícone conforme pontuação
+  if (score <= 3) {
+    resultIcon.textContent   = '🌱';
+    resultTitle.textContent  = 'Continue aprendendo!';
+    resultMessage.textContent = 'Não desanime! O campo do futuro tem muito para te ensinar. Revise o conteúdo e tente novamente — você vai longe!';
+  } else if (score <= 7) {
+    resultIcon.textContent   = '🌻';
+    resultTitle.textContent  = 'Você está no caminho certo!';
+    resultMessage.textContent = 'Ótimo desempenho! Você já conhece bastante sobre sustentabilidade e tecnologia rural. Continue estudando para chegar ao topo!';
+  } else {
+    resultIcon.textContent   = '🏆';
+    resultTitle.textContent  = 'Parabéns! Você é um especialista do Agrinho!';
+    resultMessage.textContent = 'Incrível! Você domina os temas de agricultura sustentável e tecnologia no campo. O futuro do Brasil precisa de pessoas como você!';
+  }
+
+  // Atualiza barra de progresso para 100%
+  progressBar.style.width = '100%';
+  questionCounter.textContent = `Pergunta ${quizData.length} de ${quizData.length}`;
+}
+
+/**
+ * Reinicia o quiz do zero.
+ */
+function restartQuiz() {
+  currentQuestion = 0;
+  score            = 0;
+  answered         = false;
+  progressBar.style.width  = '0%';
+  resultBar.style.width    = '0%';
+  showScreen(quizStart);
+}
+
+/* ─────────────────────────────────────────
+   5. EVENTOS DO QUIZ
+   ───────────────────────────────────────── */
+startBtn.addEventListener('click', () => {
+  showScreen(quizGame);
+  loadQuestion();
+});
+
+nextBtn.addEventListener('click', goNext);
+restartBtn.addEventListener('click', restartQuiz);
+
+/* ─────────────────────────────────────────
+   6. NAVEGAÇÃO SUAVE (Smooth Scroll)
+   ───────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+
+    // Fecha o menu mobile se estiver aberto
+    navLinks.classList.remove('open');
+
+    const navHeight = navbar.offsetHeight;
+    const offsetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  });
+});
+
+/* ─────────────────────────────────────────
+   7. NAVBAR – sticky & hamburger
+   ───────────────────────────────────────── */
+const navbar    = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+
+// Muda estilo da navbar ao rolar
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// Toggle menu mobile
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+// Fecha menu ao clicar fora
+document.addEventListener('click', e => {
+  if (!navbar.contains(e.target)) {
+    navLinks.classList.remove('open');
+  }
+});
+
+/* ─────────────────────────────────────────
+   8. BOTÃO VOLTAR AO TOPO
+   ───────────────────────────────────────── */
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+}, { passive: true });
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ─────────────────────────────────────────
+   9. ANIMAÇÕES AO ROLAR (Intersection Observer)
+   ───────────────────────────────────────── */
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target); // anima só uma vez
+      }
+    });
+  },
+  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+);
+
+// Observa todos os elementos com classe .reveal
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
+});
+
+/* ─────────────────────────────────────────
+   10. CONTADORES ANIMADOS (data-banner)
+   ───────────────────────────────────────── */
+
+/**
+ * Anima um número de 0 até o valor alvo.
+ * @param {HTMLElement} el     – elemento span do número
+ * @param {number}      target – valor final
+ * @param {number}      duration – duração em ms
+ */
+function animateCounter(el, target, duration = 1800) {
+  const start    = performance.now();
+  const startVal = 0;
+
+  function update(now) {
+    const elapsed  = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Easing easeOutExpo
+    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    el.textContent = Math.round(startVal + (target - startVal) * eased);
+    if (progress < 1) requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+}
+
+// Dispara contadores quando o banner entrar na tela
+const dataBanner = document.querySelector('.data-banner');
+if (dataBanner) {
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.data-number').forEach(el => {
+            animateCounter(el, parseInt(el.dataset.target, 10));
+          });
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  counterObserver.observe(dataBanner);
+}
+
+/* ─────────────────────────────────────────
+   11. DESTAQUE DO LINK ATIVO NA NAVBAR
+       (baseado na seção visível)
+   ───────────────────────────────────────── */
+const sections  = document.querySelectorAll('section[id], header[id]');
+const navAnchors = document.querySelectorAll('.nav-link');
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navAnchors.forEach(a => {
+          a.style.background = '';
+          a.style.color = '';
+          if (a.getAttribute('href') === `#${id}`) {
+            a.style.background = 'var(--verde-palido)';
+            a.style.color      = 'var(--verde-escuro)';
+          }
+        });
+      }
+    });
+  },
+  { threshold: 0.4 }
+);
+
+sections.forEach(s => sectionObserver.observe(s));
+
+/* ─────────────────────────────────────────
+   12. PARTÍCULAS DECORATIVAS NO HEADER
+       (pequenas bolinhas flutuantes)
+   ───────────────────────────────────────── */
+function createParticles() {
+  const header = document.querySelector('header');
+  if (!header) return;
+
+  const colors  = ['#81C784', '#42A5F5', '#FFD600', '#A5D6A7', '#BBDEFB'];
+  const count   = window.innerWidth < 768 ? 8 : 18;
+
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    const size   = Math.random() * 12 + 4; // 4–16px
+    const left   = Math.random() * 100;
+    const top    = Math.random() * 100;
+    const dur    = Math.random() * 8 + 5;  // 5–13s
+    const delay  = Math.random() * 6;
+    const color  = colors[Math.floor(Math.random() * colors.length)];
+
+    Object.assign(p.style, {
+      position:        'absolute',
+      width:           `${size}px`,
+      height:          `${size}px`,
+      background:      color,
+      borderRadius:    '50%',
+      left:            `${left}%`,
+      top:             `${top}%`,
+      opacity:         '0.18',
+      pointerEvents:   'none',
+      zIndex:          '0',
+      animation:       `floatLeaf ${dur}s ease-in-out ${delay}s infinite`,
+    });
+
+    header.appendChild(p);
+  }
+}
+
+createParticles();
+
+/* ─────────────────────────────────────────
+   13. EFEITO PARALLAX SUAVE NO HEADER
+   ───────────────────────────────────────── */
+const heroContent = document.querySelector('.hero-content');
+
+if (heroContent && window.innerWidth > 768) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < window.innerHeight) {
+      heroContent.style.transform = `translateY(${scrollY * 0.18}px)`;
+      heroContent.style.opacity   = `${1 - scrollY / (window.innerHeight * 0.8)}`;
+    }
+  }, { passive: true });
+}
+
+/* ─────────────────────────────────────────
+   14. ANIMAÇÃO INICIAL – Destaque do título
+   ───────────────────────────────────────── */
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
 });
