@@ -3,610 +3,526 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Raízes do Futuro: Tecnologia e Sustentabilidade no Campo — Concurso Agrinho 2026" />
-  <title>Raízes do Futuro · Agrinho 2026</title>
+  <title>Raízes do Futuro – Agrinho 2026</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Playfair Display + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- ===== NAVEGAÇÃO ===== -->
-  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo" aria-label="Início">
-        <span class="logo-leaf">🌿</span>
-        <span class="logo-text">Agrinho <strong>2026</strong></span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+  <!-- ===================== HEADER ===================== -->
+  <header id="inicio">
+    <!-- Fundo decorativo com folhas SVG -->
+    <div class="header-bg" aria-hidden="true">
+      <div class="leaf leaf-1">🌿</div>
+      <div class="leaf leaf-2">🌱</div>
+      <div class="leaf leaf-3">🍃</div>
+      <div class="leaf leaf-4">🌾</div>
+      <div class="leaf leaf-5">🌿</div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Barra de navegação -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-logo">
+        <span class="logo-icon">🌱</span>
+        <span class="logo-text">Raízes do Futuro</span>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#tecnologias">Tecnologias</a></li>
-        <li><a href="#curiosidades">Curiosidades</a></li>
-        <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#dicas">Dicas</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="#curiosidades" class="nav-link">Curiosidades</a></li>
+        <li><a href="#quiz" class="nav-link">Quiz</a></li>
+        <li><a href="#desafios" class="nav-link">Desafios</a></li>
       </ul>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="hero" aria-label="Seção principal">
-    <!-- Decorações de fundo -->
-    <div class="hero-bg" aria-hidden="true">
-      <div class="bg-circle c1"></div>
-      <div class="bg-circle c2"></div>
-      <div class="bg-circle c3"></div>
-      <div class="floating-leaves" aria-hidden="true">
-        <span class="leaf l1">🍃</span>
-        <span class="leaf l2">🌾</span>
-        <span class="leaf l3">🍀</span>
-        <span class="leaf l4">🌿</span>
-        <span class="leaf l5">🍃</span>
-        <span class="leaf l6">🌱</span>
-      </div>
-    </div>
-
-    <div class="hero-content fade-in">
-      <div class="hero-badge">🏆 Concurso Agrinho 2026</div>
-      <h1 class="hero-title">
-        Raízes do <span class="highlight">Futuro</span>
-        <br/>
-        <span class="subtitle-line">Tecnologia e Sustentabilidade</span>
-        <br/>
-        <span class="subtitle-line dim">no Campo</span>
+    <!-- Conteúdo principal do hero -->
+    <div class="hero-content">
+      <div class="hero-tag animate-fade-up" style="--delay:0.1s">🏆 Concurso Agrinho 2026</div>
+      <h1 class="hero-title animate-fade-up" style="--delay:0.25s">
+        Raízes<br/>
+        <span class="title-accent">do Futuro</span>
       </h1>
-      <p class="hero-desc">
-        Descubra como a inovação tecnológica e a preservação ambiental
-        estão transformando o campo brasileiro — e o futuro de todos nós.
+      <p class="hero-subtitle animate-fade-up" style="--delay:0.4s">
+        Tecnologia &amp; Sustentabilidade no Campo
       </p>
-      <div class="hero-actions">
-        <a href="#sobre" class="btn btn-primary">
-          <span>Explorar</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </a>
-        <a href="#quiz" class="btn btn-outline">Fazer o Quiz</a>
+      <p class="hero-desc animate-fade-up" style="--delay:0.55s">
+        Descubra como a inovação está transformando a agricultura brasileira,
+        garantindo alimentos de qualidade e um planeta mais verde para as próximas gerações.
+      </p>
+      <div class="hero-cta animate-fade-up" style="--delay:0.7s">
+        <a href="#sobre" class="btn btn-primary">Explorar</a>
+        <a href="#quiz" class="btn btn-outline">Fazer o Quiz →</a>
       </div>
     </div>
 
-    <!-- Ilustração SVG do campo -->
-    <div class="hero-illustration" aria-hidden="true">
-      <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de campo com tecnologia">
-        <!-- Céu -->
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#c8f0e0"/>
-            <stop offset="100%" stop-color="#e8f8f0"/>
-          </linearGradient>
-          <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#4caf50"/>
-            <stop offset="100%" stop-color="#2e7d32"/>
-          </linearGradient>
-          <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#8d6e63"/>
-            <stop offset="100%" stop-color="#5d4037"/>
-          </linearGradient>
-        </defs>
-
-        <!-- Fundo -->
-        <rect width="520" height="340" fill="url(#sky)" rx="20"/>
-
-        <!-- Nuvens -->
-        <ellipse cx="80" cy="60" rx="50" ry="22" fill="white" opacity="0.8"/>
-        <ellipse cx="110" cy="50" rx="38" ry="20" fill="white" opacity="0.9"/>
-        <ellipse cx="380" cy="75" rx="55" ry="20" fill="white" opacity="0.7"/>
-        <ellipse cx="415" cy="65" rx="40" ry="18" fill="white" opacity="0.8"/>
-
-        <!-- Sol -->
-        <circle cx="440" cy="50" r="30" fill="#FFD54F" opacity="0.9"/>
-        <circle cx="440" cy="50" r="22" fill="#FFCA28"/>
-
-        <!-- Montanha/colinas de fundo -->
-        <ellipse cx="100" cy="190" rx="140" ry="70" fill="#81c784" opacity="0.5"/>
-        <ellipse cx="400" cy="200" rx="160" ry="80" fill="#66bb6a" opacity="0.4"/>
-
-        <!-- Campo verde -->
-        <rect x="0" y="200" width="520" height="140" fill="url(#grass)" rx="0"/>
-
-        <!-- Solo em baixo -->
-        <rect x="0" y="300" width="520" height="40" fill="url(#soil)"/>
-
-        <!-- Fileiras de plantação -->
-        <rect x="20" y="295" width="480" height="8" fill="#6d4c41" rx="4" opacity="0.6"/>
-        <!-- Plantas na fileira -->
-        <g fill="#2e7d32">
-          <ellipse cx="50" cy="285" rx="10" ry="16"/>
-          <ellipse cx="80" cy="283" rx="10" ry="18"/>
-          <ellipse cx="110" cy="285" rx="10" ry="16"/>
-          <ellipse cx="140" cy="282" rx="11" ry="19"/>
-          <ellipse cx="170" cy="285" rx="10" ry="16"/>
-          <ellipse cx="200" cy="283" rx="11" ry="18"/>
-          <ellipse cx="230" cy="284" rx="10" ry="17"/>
-          <ellipse cx="260" cy="282" rx="11" ry="19"/>
-          <ellipse cx="290" cy="285" rx="10" ry="16"/>
-          <ellipse cx="320" cy="283" rx="11" ry="18"/>
-          <ellipse cx="350" cy="285" rx="10" ry="16"/>
-          <ellipse cx="380" cy="282" rx="11" ry="19"/>
-          <ellipse cx="410" cy="285" rx="10" ry="16"/>
-          <ellipse cx="440" cy="283" rx="11" ry="18"/>
-          <ellipse cx="470" cy="284" rx="10" ry="17"/>
-        </g>
-
-        <!-- Árvore grande esquerda -->
-        <rect x="38" y="190" width="10" height="60" fill="#5d4037" rx="3"/>
-        <ellipse cx="43" cy="175" rx="32" ry="30" fill="#388e3c"/>
-        <ellipse cx="30" cy="185" rx="20" ry="18" fill="#43a047"/>
-        <ellipse cx="56" cy="182" rx="20" ry="18" fill="#2e7d32"/>
-
-        <!-- Árvore grande direita -->
-        <rect x="468" y="195" width="10" height="55" fill="#5d4037" rx="3"/>
-        <ellipse cx="473" cy="180" rx="30" ry="28" fill="#388e3c"/>
-        <ellipse cx="460" cy="188" rx="18" ry="16" fill="#43a047"/>
-        <ellipse cx="486" cy="186" rx="18" ry="16" fill="#2e7d32"/>
-
-        <!-- Casa rural -->
-        <rect x="195" y="220" width="80" height="55" fill="#efebe9" rx="2"/>
-        <polygon points="183,220 275,220 229,178" fill="#d32f2f"/>
-        <rect x="218" y="245" width="22" height="30" fill="#8d6e63" rx="1"/><!-- porta -->
-        <rect x="202" y="232" width="18" height="14" fill="#b3e5fc" rx="2"/><!-- janela -->
-        <rect x="250" y="232" width="18" height="14" fill="#b3e5fc" rx="2"/><!-- janela -->
-
-        <!-- Painel solar no telhado -->
-        <rect x="215" y="188" width="28" height="18" fill="#1565c0" rx="2" opacity="0.9"/>
-        <line x1="215" y1="197" x2="243" y2="197" stroke="#90caf9" stroke-width="1"/>
-        <line x1="229" y1="188" x2="229" y2="206" stroke="#90caf9" stroke-width="1"/>
-
-        <!-- Drone -->
-        <g class="drone-anim">
-          <rect x="300" y="115" width="30" height="8" fill="#37474f" rx="4"/>
-          <circle cx="297" cy="116" r="5" fill="#546e7a" opacity="0.8"/>
-          <circle cx="333" cy="116" r="5" fill="#546e7a" opacity="0.8"/>
-          <rect x="312" y="110" width="6" height="5" fill="#ffd54f" rx="1"/>
-          <!-- hélices -->
-          <ellipse cx="297" cy="113" rx="9" ry="3" fill="#90a4ae" opacity="0.6"/>
-          <ellipse cx="333" cy="113" rx="9" ry="3" fill="#90a4ae" opacity="0.6"/>
-          <!-- linha tracejada para baixo -->
-          <line x1="315" y1="123" x2="230" y2="200" stroke="#ffd54f" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.7"/>
-        </g>
-
-        <!-- Sensor de solo -->
-        <rect x="150" y="280" width="6" height="20" fill="#ff7043" rx="2"/>
-        <circle cx="153" cy="278" r="7" fill="#ff5722"/>
-        <circle cx="153" cy="278" r="4" fill="#ffcc02"/>
-
-        <!-- Torre de energia / sinal wifi -->
-        <rect x="355" y="220" width="8" height="55" fill="#455a64" rx="2"/>
-        <path d="M349 225 Q363 215 377 225" stroke="#00bcd4" stroke-width="2" fill="none"/>
-        <path d="M345 220 Q363 206 381 220" stroke="#00bcd4" stroke-width="1.5" fill="none" opacity="0.6"/>
-
-        <!-- Riacho -->
-        <path d="M0 270 Q40 260 80 270 Q120 280 160 268 Q200 256 240 268" stroke="#4fc3f7" stroke-width="6" fill="none" opacity="0.7"/>
-
-        <!-- Texto pequeno decorativo -->
-        <text x="260" y="330" font-size="9" fill="#fff" opacity="0.6" text-anchor="middle" font-family="sans-serif">Campo do Futuro · Agrinho 2026</text>
-      </svg>
+    <!-- Ilustração hero -->
+    <div class="hero-illustration animate-fade-up" style="--delay:0.5s" aria-hidden="true">
+      <div class="illus-card">
+        <div class="illus-scene">
+          <!-- Sol -->
+          <div class="sun">☀️</div>
+          <!-- Nuvem com dados -->
+          <div class="cloud-data">☁️ <span>IoT</span></div>
+          <!-- Drone -->
+          <div class="drone">🚁</div>
+          <!-- Campo -->
+          <div class="field-row">
+            <span>🌽</span><span>🌽</span><span>🌽</span>
+            <span>🌻</span><span>🌻</span>
+            <span>🌾</span><span>🌾</span><span>🌾</span>
+          </div>
+          <!-- Trator -->
+          <div class="tractor">🚜</div>
+          <!-- Painel solar -->
+          <div class="solar">🔋</div>
+        </div>
+        <div class="illus-stats">
+          <div class="stat-chip">📡 Precisão</div>
+          <div class="stat-chip">💧 -40% água</div>
+          <div class="stat-chip">🌱 +30% colheita</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="scroll-hint" aria-hidden="true">
-      <span>Role para baixo</span>
-      <div class="scroll-arrow"></div>
+    <!-- Indicador de scroll -->
+    <div class="scroll-hint animate-bounce" aria-hidden="true">
+      <span>↓</span>
     </div>
-  </section>
+  </header>
 
-  <!-- ===== SOBRE O TEMA ===== -->
-  <section class="section sobre" id="sobre" aria-labelledby="sobre-title">
+  <!-- ===================== SOBRE ===================== -->
+  <section id="sobre" class="section sobre-section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">🌱 O Tema</span>
-        <h2 id="sobre-title">Sobre a Sustentabilidade no Campo</h2>
-        <p>Entenda como o campo e a cidade estão profundamente conectados e por que a inovação rural importa para todos.</p>
+        <span class="section-tag">🌍 Fundamentos</span>
+        <h2 class="section-title">Sobre o Projeto</h2>
+        <p class="section-desc">Entenda a conexão entre tecnologia, campo e qualidade de vida</p>
       </div>
 
       <div class="sobre-grid">
         <!-- Card 1 -->
-        <article class="sobre-card reveal" style="--delay:0.1s">
-          <div class="sobre-icon" aria-hidden="true">♻️</div>
-          <h3>O que é Sustentabilidade no Campo?</h3>
+        <div class="sobre-card reveal" style="--delay:0.1s">
+          <div class="card-icon-big">🌱</div>
+          <h3>Agricultura Sustentável</h3>
           <p>
-            Sustentabilidade agrícola significa produzir alimentos de forma eficiente sem esgotar os recursos naturais.
-            Envolve o uso consciente da água, do solo e da energia para garantir que as próximas gerações também possam
-            cultivar e colher com abundância.
+            A agricultura sustentável produz alimentos de forma responsável, preservando os recursos
+            naturais para as gerações futuras. Ela equilibra produção eficiente com respeito ao solo,
+            à água e à biodiversidade, garantindo que o campo continue fértil por séculos.
           </p>
-        </article>
+          <div class="card-highlight">Solo saudável = futuro garantido</div>
+        </div>
 
         <!-- Card 2 -->
-        <article class="sobre-card reveal" style="--delay:0.2s">
-          <div class="sobre-icon" aria-hidden="true">🌽</div>
-          <h3>A Importância da Agricultura</h3>
+        <div class="sobre-card reveal" style="--delay:0.2s">
+          <div class="card-icon-big">💻</div>
+          <h3>Tecnologia no Campo</h3>
           <p>
-            O Brasil é um dos maiores produtores agrícolas do mundo. A agricultura gera empregos, alimenta milhões de
-            pessoas, movimenta a economia e é a base da vida no campo e na cidade — cada refeição começa no campo.
+            Sensores inteligentes, drones, inteligência artificial e Big Data revolucionaram a
+            agricultura. Os produtores rurais agora tomam decisões baseadas em dados precisos:
+            quando irrigar, quando plantar, onde o solo precisa de nutrientes.
           </p>
-        </article>
+          <div class="card-highlight">Dados em tempo real, decisões mais inteligentes</div>
+        </div>
 
         <!-- Card 3 -->
-        <article class="sobre-card reveal" style="--delay:0.3s">
-          <div class="sobre-icon" aria-hidden="true">💡</div>
-          <h3>Como a Tecnologia Ajuda</h3>
+        <div class="sobre-card reveal" style="--delay:0.3s">
+          <div class="card-icon-big">🏙️</div>
+          <h3>Campo &amp; Cidade Unidos</h3>
           <p>
-            Drones, sensores de solo, inteligência artificial e energia solar aumentam a produtividade, reduzem
-            desperdícios e minimizam o impacto ambiental. A tecnologia é a aliada do produtor rural moderno.
+            O campo alimenta a cidade. A cidade fornece tecnologia e mercado ao campo.
+            Essa relação de interdependência é essencial: 70% dos alimentos que chegam à mesa
+            urbana vêm de pequenos e médios produtores rurais brasileiros.
           </p>
-        </article>
+          <div class="card-highlight">Conexão que alimenta o Brasil inteiro</div>
+        </div>
 
         <!-- Card 4 -->
-        <article class="sobre-card reveal" style="--delay:0.4s">
-          <div class="sobre-icon" aria-hidden="true">🏙️</div>
-          <h3>Campo e Cidade Conectados</h3>
+        <div class="sobre-card reveal" style="--delay:0.4s">
+          <div class="card-icon-big">🌿</div>
+          <h3>Preservação Ambiental</h3>
           <p>
-            Tudo que consumimos nas cidades — alimentos, fibras, energia — vem do campo. Ao mesmo tempo, as cidades
-            fornecem tecnologia, mercado e infraestrutura ao produtor rural. Essa parceria é essencial para o
-            desenvolvimento sustentável do Brasil.
+            Preservar florestas, nascentes e biodiversidade não é oposto à produção agrícola —
+            é condição para ela. O Código Florestal Brasileiro e técnicas como agrofloresta
+            mostram que produzir e preservar podem andar juntos.
           </p>
-        </article>
+          <div class="card-highlight">Produzir sem destruir é possível</div>
+        </div>
       </div>
 
-      <!-- Estatísticas -->
-      <div class="stats-row reveal">
-        <div class="stat">
-          <span class="stat-num" data-target="33">0</span>
-          <span class="stat-suffix">%</span>
-          <span class="stat-label">do PIB brasileiro vem do agronegócio</span>
+      <!-- Banner de dados -->
+      <div class="data-banner reveal">
+        <div class="data-item">
+          <span class="data-number" data-target="180">0</span>
+          <span class="data-suffix">Mi</span>
+          <span class="data-label">Hectares cultivados no Brasil</span>
         </div>
-        <div class="stat">
-          <span class="stat-num" data-target="21">0</span>
-          <span class="stat-suffix">M</span>
-          <span class="stat-label">de empregos gerados no campo</span>
+        <div class="data-divider" aria-hidden="true"></div>
+        <div class="data-item">
+          <span class="data-number" data-target="40">0</span>
+          <span class="data-suffix">%</span>
+          <span class="data-label">Redução no uso de água com precisão</span>
         </div>
-        <div class="stat">
-          <span class="stat-num" data-target="180">0</span>
-          <span class="stat-suffix">+</span>
-          <span class="stat-label">países recebem produtos do Brasil</span>
+        <div class="data-divider" aria-hidden="true"></div>
+        <div class="data-item">
+          <span class="data-number" data-target="5">0</span>
+          <span class="data-suffix">°</span>
+          <span class="data-label">Aquecimento global que ameaça colheitas</span>
         </div>
-        <div class="stat">
-          <span class="stat-num" data-target="30">0</span>
-          <span class="stat-suffix">%</span>
-          <span class="stat-label">das terras cultivadas já usam tecnologia</span>
+        <div class="data-divider" aria-hidden="true"></div>
+        <div class="data-item">
+          <span class="data-number" data-target="10">0</span>
+          <span class="data-suffix">Bi</span>
+          <span class="data-label">Pessoas para alimentar em 2050</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CURIOSIDADES ===================== -->
+  <section id="curiosidades" class="section curiosidades-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">💡 Saiba Mais</span>
+        <h2 class="section-title">Curiosidades</h2>
+        <p class="section-desc">Tecnologias que estão mudando a agricultura agora</p>
+      </div>
+
+      <div class="curiosidades-grid">
+        <!-- Cartão 1 -->
+        <div class="curio-card reveal" style="--delay:0.1s">
+          <div class="curio-header">
+            <div class="curio-emoji">🛰️</div>
+            <div class="curio-badge">Tecnologia</div>
+          </div>
+          <h3>Agricultura de Precisão</h3>
+          <p>
+            Com GPS, sensores e satélites, é possível mapear cada metro do campo e aplicar
+            fertilizantes e defensivos apenas onde são necessários. Resultado: até 30% menos
+            insumos e colheitas até 20% maiores!
+          </p>
+          <ul class="curio-facts">
+            <li>📍 Mapeamento por zonas do solo</li>
+            <li>📊 Análises em tempo real</li>
+            <li>💰 Redução de custos até 25%</li>
+          </ul>
+          <div class="curio-footer">
+            <span class="tag-small">GPS</span>
+            <span class="tag-small">Sensores</span>
+            <span class="tag-small">Big Data</span>
+          </div>
+        </div>
+
+        <!-- Cartão 2 -->
+        <div class="curio-card reveal" style="--delay:0.2s">
+          <div class="curio-header">
+            <div class="curio-emoji">🚁</div>
+            <div class="curio-badge">Inovação</div>
+          </div>
+          <h3>Drones na Lavoura</h3>
+          <p>
+            Drones agrícolas fotografam lavouras com câmeras multiespectrais que enxergam
+            além do visível, identificando doenças e pragas antes que o olho humano perceba.
+            Um drone pode monitorar 100 ha em menos de 1 hora!
+          </p>
+          <ul class="curio-facts">
+            <li>📸 Câmeras multiespectrais</li>
+            <li>🔍 Detecção precoce de pragas</li>
+            <li>⚗️ Pulverização cirúrgica</li>
+          </ul>
+          <div class="curio-footer">
+            <span class="tag-small">IA</span>
+            <span class="tag-small">Visão Computacional</span>
+          </div>
+        </div>
+
+        <!-- Cartão 3 -->
+        <div class="curio-card reveal" style="--delay:0.3s">
+          <div class="curio-header">
+            <div class="curio-emoji">☀️</div>
+            <div class="curio-badge">Energia</div>
+          </div>
+          <h3>Energia Renovável</h3>
+          <p>
+            Painéis solares e pequenas usinas eólicas já abastecem milhares de propriedades
+            rurais no Brasil. O agronegócio pode gerar sua própria energia limpa, reduzir custos
+            e ainda vender o excedente para a rede elétrica!
+          </p>
+          <ul class="curio-facts">
+            <li>⚡ Autoprodução de energia</li>
+            <li>🌬️ Eólica e solar combinadas</li>
+            <li>💚 Zero emissão de carbono</li>
+          </ul>
+          <div class="curio-footer">
+            <span class="tag-small">Solar</span>
+            <span class="tag-small">Eólica</span>
+            <span class="tag-small">Bioenergia</span>
+          </div>
+        </div>
+
+        <!-- Cartão 4 -->
+        <div class="curio-card reveal" style="--delay:0.4s">
+          <div class="curio-header">
+            <div class="curio-emoji">💧</div>
+            <div class="curio-badge">Sustentabilidade</div>
+          </div>
+          <h3>Conservação da Água</h3>
+          <p>
+            A irrigação por gotejamento, sensores de umidade no solo e reaproveitamento
+            de água da chuva podem reduzir o consumo hídrico em até 60% na agricultura.
+            Água economizada é vida preservada para o futuro.
+          </p>
+          <ul class="curio-facts">
+            <li>💦 Gotejamento inteligente</li>
+            <li>🌧️ Captação de água da chuva</li>
+            <li>📉 -60% no desperdício hídrico</li>
+          </ul>
+          <div class="curio-footer">
+            <span class="tag-small">IoT</span>
+            <span class="tag-small">Irrigação</span>
+            <span class="tag-small">Sensores</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== TECNOLOGIAS ===== -->
-  <section class="section tecnologias" id="tecnologias" aria-labelledby="tec-title">
+  <!-- ===================== QUIZ ===================== -->
+  <section id="quiz" class="section quiz-section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">⚙️ Inovação</span>
-        <h2 id="tec-title">Tecnologias que Transformam</h2>
-        <p>Conheça as ferramentas que estão revolucionando o campo brasileiro e tornando a agricultura mais eficiente e sustentável.</p>
-      </div>
-
-      <div class="tec-grid">
-
-        <!-- Drone -->
-        <article class="tec-card reveal" style="--delay:0.05s" tabindex="0" aria-label="Drones Agrícolas">
-          <div class="tec-card-inner">
-            <div class="tec-icon" aria-hidden="true">🚁</div>
-            <h3>Drones Agrícolas</h3>
-            <p>
-              Voam sobre lavouras monitorando a saúde das plantas, aplicando defensivos com precisão e mapeando
-              áreas extensas em questão de minutos. Economizam até 40% no uso de agroquímicos.
-            </p>
-            <div class="tec-tag">Monitoramento</div>
-          </div>
-        </article>
-
-        <!-- Sensores -->
-        <article class="tec-card reveal" style="--delay:0.1s" tabindex="0" aria-label="Sensores de Solo">
-          <div class="tec-card-inner">
-            <div class="tec-icon" aria-hidden="true">📡</div>
-            <h3>Sensores de Solo</h3>
-            <p>
-              Medem temperatura, umidade, pH e nutrientes do solo em tempo real. Com esses dados, o produtor
-              sabe exatamente quando e quanto adubar ou irrigar, evitando desperdícios.
-            </p>
-            <div class="tec-tag">Dados em Tempo Real</div>
-          </div>
-        </article>
-
-        <!-- Irrigação -->
-        <article class="tec-card reveal" style="--delay:0.15s" tabindex="0" aria-label="Irrigação Inteligente">
-          <div class="tec-card-inner">
-            <div class="tec-icon" aria-hidden="true">💧</div>
-            <h3>Irrigação Inteligente</h3>
-            <p>
-              Sistemas automatizados que liberam água somente quando e onde as plantas precisam. Podem
-              economizar até 50% do consumo de água em comparação com a irrigação tradicional.
-            </p>
-            <div class="tec-tag">Eficiência Hídrica</div>
-          </div>
-        </article>
-
-        <!-- Energia Solar -->
-        <article class="tec-card reveal" style="--delay:0.2s" tabindex="0" aria-label="Energia Solar">
-          <div class="tec-card-inner">
-            <div class="tec-icon" aria-hidden="true">☀️</div>
-            <h3>Energia Solar Rural</h3>
-            <p>
-              Painéis solares instalados nas propriedades rurais geram energia limpa e barata. O produtor
-              pode abastecer toda a fazenda e ainda vender o excedente para a rede elétrica.
-            </p>
-            <div class="tec-tag">Energia Limpa</div>
-          </div>
-        </article>
-
-        <!-- Agricultura de Precisão -->
-        <article class="tec-card reveal" style="--delay:0.25s" tabindex="0" aria-label="Agricultura de Precisão">
-          <div class="tec-card-inner">
-            <div class="tec-icon" aria-hidden="true">🎯</div>
-            <h3>Agricultura de Precisão</h3>
-            <p>
-              Usa GPS, big data e inteligência artificial para tomar decisões certeiras sobre plantio, colheita
-              e manejo. Reduz custos, aumenta produção e diminui o impacto no meio ambiente.
-            </p>
-            <div class="tec-tag">Inteligência Artificial</div>
-          </div>
-        </article>
-
-        <!-- Bonus: Biotecnologia -->
-        <article class="tec-card reveal" style="--delay:0.3s" tabindex="0" aria-label="Biotecnologia Verde">
-          <div class="tec-card-inner">
-            <div class="tec-icon" aria-hidden="true">🧬</div>
-            <h3>Biotecnologia Verde</h3>
-            <p>
-              Sementes mais resistentes à seca e doenças, biofertilizantes naturais e controle biológico
-              de pragas substituem agroquímicos e fortalecem a biodiversidade do campo.
-            </p>
-            <div class="tec-tag">Pesquisa & Ciência</div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CURIOSIDADES ===== -->
-  <section class="section curiosidades" id="curiosidades" aria-labelledby="cur-title">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">🔎 Sabia que...</span>
-        <h2 id="cur-title">Curiosidades sobre Agricultura Sustentável</h2>
-        <p>Fatos surpreendentes que mostram como o campo brasileiro é gigante e inovador.</p>
-      </div>
-
-      <div class="cur-grid">
-
-        <div class="cur-card reveal" style="--delay:0.1s">
-          <div class="cur-number" aria-hidden="true">01</div>
-          <div class="cur-emoji" aria-hidden="true">🌍</div>
-          <p>
-            O Brasil possui a maior área de floresta tropical do mundo e, ao mesmo tempo, é um dos maiores
-            produtores de alimentos do planeta, mostrando que é possível produzir <strong>sem destruir</strong>.
-          </p>
-        </div>
-
-        <div class="cur-card reveal" style="--delay:0.15s">
-          <div class="cur-number" aria-hidden="true">02</div>
-          <div class="cur-emoji" aria-hidden="true">💧</div>
-          <p>
-            Uma gota de irrigação inteligente pode irrigar até <strong>5 vezes mais plantas</strong> do que a
-            irrigação convencional. Só na agricultura, 70% da água doce do mundo é consumida.
-          </p>
-        </div>
-
-        <div class="cur-card reveal" style="--delay:0.2s">
-          <div class="cur-number" aria-hidden="true">03</div>
-          <div class="cur-emoji" aria-hidden="true">🐝</div>
-          <p>
-            As abelhas são responsáveis pela polinização de <strong>⅓ de todos os alimentos</strong> que
-            consumimos. Preservar sua população é fundamental para manter a produção agrícola no planeta.
-          </p>
-        </div>
-
-        <div class="cur-card reveal" style="--delay:0.25s">
-          <div class="cur-number" aria-hidden="true">04</div>
-          <div class="cur-emoji" aria-hidden="true">🌱</div>
-          <p>
-            Um único hectare de solo saudável pode conter mais de <strong>1 bilhão de micro-organismos</strong>.
-            Esses organismos decompõem matéria orgânica e tornam o solo fértil naturalmente.
-          </p>
-        </div>
-
-        <div class="cur-card reveal" style="--delay:0.3s">
-          <div class="cur-number" aria-hidden="true">05</div>
-          <div class="cur-emoji" aria-hidden="true">☀️</div>
-          <p>
-            O Brasil tem um dos maiores potenciais de energia solar do mundo. Uma propriedade rural de 1 hectare
-            com painéis solares pode gerar energia suficiente para <strong>abastecer 20 famílias</strong>.
-          </p>
-        </div>
-
-        <div class="cur-card reveal" style="--delay:0.35s">
-          <div class="cur-number" aria-hidden="true">06</div>
-          <div class="cur-emoji" aria-hidden="true">🤖</div>
-          <p>
-            Robôs agrícolas já colhem morangos, podas vinhedos e ordenham vacas. Em 2026, estima-se que
-            <strong>1 em cada 4 fazendas</strong> no mundo usará algum tipo de automação robótica.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== QUIZ ===== -->
-  <section class="section quiz-section" id="quiz" aria-labelledby="quiz-title">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">🧩 Interativo</span>
-        <h2 id="quiz-title">Quiz: Quanto você sabe?</h2>
-        <p>Teste seus conhecimentos sobre sustentabilidade e tecnologia no campo. São 10 perguntas!</p>
+        <span class="section-tag">🎯 Teste seu conhecimento</span>
+        <h2 class="section-title">Quiz Interativo</h2>
+        <p class="section-desc">10 perguntas sobre agricultura, sustentabilidade e tecnologia</p>
       </div>
 
       <div class="quiz-wrapper reveal">
         <!-- Tela inicial do quiz -->
-        <div class="quiz-start" id="quizStart">
-          <div class="quiz-start-icon" aria-hidden="true">🌾</div>
-          <h3>Pronto para o desafio?</h3>
-          <p>10 perguntas sobre tecnologia e sustentabilidade no campo. Descubra qual é o seu nível!</p>
-          <button class="btn btn-primary btn-large" id="startQuizBtn">Começar Quiz</button>
+        <div id="quizStart" class="quiz-screen active">
+          <div class="quiz-start-content">
+            <div class="quiz-start-icon">🌾</div>
+            <h3>Pronto para o desafio?</h3>
+            <p>Responda 10 perguntas e descubra o quanto você sabe sobre o campo do futuro!</p>
+            <div class="quiz-rules">
+              <span>📋 10 perguntas</span>
+              <span>⚡ Uma por vez</span>
+              <span>📊 Pontuação ao final</span>
+            </div>
+            <button class="btn btn-primary btn-large" id="startQuiz">Começar Quiz</button>
+          </div>
         </div>
 
-        <!-- Pergunta -->
-        <div class="quiz-game hidden" id="quizGame" role="main" aria-live="polite">
-          <div class="quiz-header">
-            <span class="quiz-progress-label" id="progressLabel">Pergunta 1 de 10</span>
-            <span class="quiz-score-label">Pontos: <strong id="scoreDisplay">0</strong></span>
+        <!-- Tela das perguntas -->
+        <div id="quizGame" class="quiz-screen">
+          <!-- Barra de progresso -->
+          <div class="progress-area">
+            <div class="progress-info">
+              <span id="questionCounter">Pergunta 1 de 10</span>
+              <span id="scoreDisplay">Pontuação: 0</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
           </div>
 
-          <div class="quiz-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-label="Progresso do quiz">
-            <div class="quiz-progress-fill" id="progressFill"></div>
+          <!-- Pergunta -->
+          <div class="question-area" id="questionArea">
+            <div class="question-number" id="questionNumber">01</div>
+            <h3 class="question-text" id="questionText"></h3>
           </div>
 
-          <div class="quiz-question-box">
-            <p class="quiz-question" id="quizQuestion">Texto da pergunta</p>
+          <!-- Opções -->
+          <div class="options-grid" id="optionsGrid"></div>
+
+          <!-- Feedback -->
+          <div class="feedback-area" id="feedbackArea" style="display:none">
+            <div class="feedback-icon" id="feedbackIcon"></div>
+            <div class="feedback-text" id="feedbackText"></div>
+            <div class="feedback-explanation" id="feedbackExplanation"></div>
+            <button class="btn btn-primary" id="nextQuestion">Próxima →</button>
           </div>
-
-          <div class="quiz-options" id="quizOptions" role="list">
-            <!-- Opções geradas via JS -->
-          </div>
-
-          <div class="quiz-feedback hidden" id="quizFeedback" aria-live="polite"></div>
-
-          <button class="btn btn-primary btn-next hidden" id="nextBtn">
-            Próxima <span aria-hidden="true">→</span>
-          </button>
         </div>
 
-        <!-- Resultado -->
-        <div class="quiz-result hidden" id="quizResult">
-          <div class="result-emoji" id="resultEmoji" aria-hidden="true">🏆</div>
-          <h3 id="resultTitle">Parabéns!</h3>
-          <p id="resultDesc">Você é incrível!</p>
-          <div class="result-score">
-            Você acertou <strong id="finalScore">0</strong> de 10 perguntas
+        <!-- Tela de resultado -->
+        <div id="quizResult" class="quiz-screen">
+          <div class="result-content">
+            <div class="result-icon" id="resultIcon"></div>
+            <h3 class="result-title" id="resultTitle"></h3>
+            <div class="result-score">
+              <span id="finalScore">0</span>
+              <span class="result-total">/ 10</span>
+            </div>
+            <p class="result-message" id="resultMessage"></p>
+            <div class="result-bar-container">
+              <div class="result-bar" id="resultBar"></div>
+            </div>
+            <button class="btn btn-primary btn-large" id="restartQuiz">🔄 Jogar Novamente</button>
           </div>
-          <button class="btn btn-primary btn-large" id="restartBtn">🔄 Jogar Novamente</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== DICAS ===== -->
-  <section class="section dicas" id="dicas" aria-labelledby="dicas-title">
+  <!-- ===================== DESAFIOS ===================== -->
+  <section id="desafios" class="section desafios-section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">💚 Ação</span>
-        <h2 id="dicas-title">Dicas para um Futuro Sustentável</h2>
-        <p>Pequenas atitudes no dia a dia fazem uma grande diferença para o planeta. Comece hoje!</p>
+        <span class="section-tag">🔭 Olhando para frente</span>
+        <h2 class="section-title">Desafios para o Futuro</h2>
+        <p class="section-desc">Os grandes temas que a humanidade precisa resolver</p>
       </div>
 
-      <div class="dicas-grid">
-
-        <div class="dica-card reveal" style="--delay:0.05s">
-          <div class="dica-icon" aria-hidden="true">💧</div>
-          <div class="dica-content">
-            <h3>Economize Água</h3>
-            <ul>
-              <li>Feche a torneira ao escovar os dentes</li>
-              <li>Tome banhos mais curtos</li>
-              <li>Reutilize a água da chuva para regar plantas</li>
-              <li>Conserte vazamentos imediatamente</li>
-            </ul>
+      <div class="desafios-grid">
+        <!-- Desafio 1 -->
+        <div class="desafio-card reveal" style="--delay:0.1s">
+          <div class="desafio-number">01</div>
+          <div class="desafio-icon">🍽️</div>
+          <h3>Segurança Alimentar</h3>
+          <p>
+            Em 2050, o mundo terá 10 bilhões de pessoas. Precisaremos produzir 70% mais alimentos
+            sem expandir áreas cultivadas. A solução está em aumentar produtividade com tecnologia,
+            reduzir o desperdício alimentar (hoje 1/3 do alimento produzido é perdido) e distribuir
+            a comida de forma mais justa.
+          </p>
+          <div class="desafio-meta">
+            <span>🎯 Meta ODS 2</span>
+            <span>📅 Prazo 2030</span>
           </div>
         </div>
 
-        <div class="dica-card reveal" style="--delay:0.1s">
-          <div class="dica-icon" aria-hidden="true">♻️</div>
-          <div class="dica-content">
-            <h3>Separe os Resíduos</h3>
-            <ul>
-              <li>Aprenda a separar lixo reciclável do orgânico</li>
-              <li>Faça compostagem com restos de alimentos</li>
-              <li>Evite embalagens descartáveis desnecessárias</li>
-              <li>Doe roupas e objetos que não usa</li>
-            </ul>
+        <!-- Desafio 2 -->
+        <div class="desafio-card reveal" style="--delay:0.2s">
+          <div class="desafio-number">02</div>
+          <div class="desafio-icon">🌡️</div>
+          <h3>Mudanças Climáticas</h3>
+          <p>
+            O aquecimento global já afeta os ciclos de chuva e seca no Brasil. Geadas fora de
+            época, secas prolongadas e chuvas excessivas ameaçam lavouras. Adaptar a agricultura
+            ao novo clima e reduzir as emissões do próprio campo são desafios urgentes e
+            complementares.
+          </p>
+          <div class="desafio-meta">
+            <span>🌡️ +1,5°C limite</span>
+            <span>🌍 Acordo de Paris</span>
           </div>
         </div>
 
-        <div class="dica-card reveal" style="--delay:0.15s">
-          <div class="dica-icon" aria-hidden="true">🛒</div>
-          <div class="dica-content">
-            <h3>Valorize Produtores Locais</h3>
-            <ul>
-              <li>Compre frutas e verduras de feiras locais</li>
-              <li>Escolha produtos orgânicos e sem agrotóxicos</li>
-              <li>Apoie pequenos agricultores da sua região</li>
-              <li>Prefira alimentos da estação</li>
-            </ul>
+        <!-- Desafio 3 -->
+        <div class="desafio-card reveal" style="--delay:0.3s">
+          <div class="desafio-number">03</div>
+          <div class="desafio-icon">🤖</div>
+          <h3>Inovação Tecnológica</h3>
+          <p>
+            Inteligência Artificial, robótica, biotecnologia e nanotecnologia prometem uma nova
+            revolução agrícola. Robôs que colhem frutas sem machucar, sementes editadas
+            geneticamente e fertilizantes de nano-partículas já são realidade em pesquisas.
+            O desafio é levar isso ao pequeno produtor.
+          </p>
+          <div class="desafio-meta">
+            <span>🤖 IA + Robótica</span>
+            <span>🧬 Biotecnologia</span>
           </div>
         </div>
 
-        <div class="dica-card reveal" style="--delay:0.2s">
-          <div class="dica-icon" aria-hidden="true">🍽️</div>
-          <div class="dica-content">
-            <h3>Evite Desperdícios</h3>
-            <ul>
-              <li>Planeje as refeições para não jogar comida fora</li>
-              <li>Aproveite talos, cascas e sementes</li>
-              <li>Guarde sobras na geladeira para o próximo dia</li>
-              <li>Compre apenas o que vai consumir</li>
-            </ul>
+        <!-- Desafio 4 -->
+        <div class="desafio-card reveal" style="--delay:0.4s">
+          <div class="desafio-number">04</div>
+          <div class="desafio-icon">♻️</div>
+          <h3>Produção Sustentável</h3>
+          <p>
+            O futuro da agricultura é circular: resíduos de uma cultura viram insumo de outra,
+            embalagens são biodegradáveis, a água é reaproveitada e a energia vem do sol e do vento.
+            Sistemas agroflorestais integram produção e natureza, mostrando que é possível
+            colher mais e desmatando zero.
+          </p>
+          <div class="desafio-meta">
+            <span>♻️ Economia Circular</span>
+            <span>🌳 Desmate zero</span>
           </div>
         </div>
+      </div>
 
-        <div class="dica-card reveal" style="--delay:0.25s">
-          <div class="dica-icon" aria-hidden="true">🌳</div>
-          <div class="dica-content">
-            <h3>Plante Árvores</h3>
-            <ul>
-              <li>Plante uma árvore nativa no quintal ou escola</li>
-              <li>Participe de projetos de reflorestamento</li>
-              <li>Cuide das plantas da sua cidade</li>
-              <li>Incentive amigos e familiares a plantar</li>
-            </ul>
+      <!-- Chamada para ação -->
+      <div class="cta-banner reveal">
+        <div class="cta-content">
+          <div class="cta-icon">🌱</div>
+          <div class="cta-text">
+            <h3>O futuro começa com você!</h3>
+            <p>Cada atitude sustentável conta. Aprender sobre o campo é o primeiro passo para transformar o mundo.</p>
           </div>
+          <a href="#quiz" class="btn btn-white">Faça o Quiz →</a>
         </div>
-
-        <div class="dica-card reveal" style="--delay:0.3s">
-          <div class="dica-icon" aria-hidden="true">📚</div>
-          <div class="dica-content">
-            <h3>Eduque e Compartilhe</h3>
-            <ul>
-              <li>Aprenda sobre meio ambiente e agricultura</li>
-              <li>Compartilhe conhecimento com amigos</li>
-              <li>Participe de projetos ambientais na escola</li>
-              <li>Seja um agente de mudança na sua comunidade</li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===== RODAPÉ ===== -->
-  <footer class="footer" role="contentinfo">
-    <div class="footer-deco" aria-hidden="true">
-      <span>🌿</span><span>🌾</span><span>🍃</span><span>🌱</span><span>🍀</span>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-leaves" aria-hidden="true">
+      <span>🌿</span><span>🍃</span><span>🌱</span><span>🌾</span><span>🍃</span>
     </div>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="logo-leaf" aria-hidden="true">🌿</span>
-        <strong>Raízes do Futuro</strong>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-icon">🌱</span>
+            <span>Raízes do Futuro</span>
+          </div>
+          <p>
+            Um projeto que celebra a união entre tecnologia, sustentabilidade e a riqueza do campo brasileiro.
+          </p>
+          <div class="footer-socials">
+            <span class="social-tag">🏆 Agrinho 2026</span>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <h4>Navegar</h4>
+          <ul>
+            <li><a href="#sobre">Sobre o Projeto</a></li>
+            <li><a href="#curiosidades">Curiosidades</a></li>
+            <li><a href="#quiz">Quiz Interativo</a></li>
+            <li><a href="#desafios">Desafios Futuros</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h4>Concurso Agrinho 2026</h4>
+          <p>
+            O Agrinho é um programa educacional do Sistema FAEP/SENAR-PR que promove
+            a integração entre o campo e a cidade, incentivando estudantes a refletirem
+            sobre temas como saúde, meio ambiente, tecnologia e sustentabilidade rural.
+          </p>
+        </div>
+
+        <div class="footer-credits">
+          <h4>Créditos</h4>
+          <!-- ✏️ ESPAÇO EDITÁVEL: substitua pelos seus dados -->
+          <div class="credits-box">
+            <p><strong>Estudante:</strong> [Seu Nome Aqui]</p>
+            <p><strong>Turma:</strong> [Turma / Série]</p>
+            <p><strong>Escola:</strong> [Nome da Escola]</p>
+            <p><strong>Município:</strong> [Cidade – PR]</p>
+            <p><strong>Professor(a):</strong> [Nome do Orientador]</p>
+          </div>
+        </div>
       </div>
-      <p class="footer-tagline">Tecnologia e Sustentabilidade no Campo</p>
-      <p class="footer-credits">
-        Projeto desenvolvido para o <strong>Concurso Agrinho 2026</strong>
-      </p>
-      <p class="footer-year">© 2026 · Todos os direitos reservados</p>
+
+      <div class="footer-bottom">
+        <p>© 2026 Raízes do Futuro · Concurso Agrinho · Todos os direitos reservados</p>
+        <p class="footer-love">Feito com 💚 e amor pelo campo brasileiro</p>
+      </div>
     </div>
   </footer>
 
-  <!-- Botão Voltar ao Topo -->
-  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo da página">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-  </button>
+  <!-- Botão voltar ao topo -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">↑</button>
 
   <script src="script.js"></script>
 </body>
